@@ -17,7 +17,7 @@
         height: 600px;
         margin: auto; 
         text-align: center;
-        background-color: red;
+        border: 1px solid black;
     }
 
     h1 {
