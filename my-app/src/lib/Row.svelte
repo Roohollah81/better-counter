@@ -24,7 +24,7 @@
 	.btn {
 		width: 10%;
 		text-align: center;
-		line-height: 3em;
+		line-height: 5em;
 		background-color: var(--items-color);
 		border: none;
 		font-size: 20px;
