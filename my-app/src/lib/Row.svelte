@@ -18,7 +18,6 @@
 	.item {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
 		gap: var(--items-gap);
 	}
 	.btn {
@@ -35,6 +34,7 @@
 		align-items: center;
 		flex-direction: column;
 		width: -webkit-fill-available;
+		justify-content: space-evenly;
 		background-color: var(--items-color);
 	}
 </style>
