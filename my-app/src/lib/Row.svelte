@@ -19,13 +19,13 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		gap: var(--fasele);
+		gap: var(--items-gap);
 	}
 	.btn {
 		width: 10%;
 		text-align: center;
 		line-height: 3em;
-		background-color: var(--ali);
+		background-color: var(--items-color);
 		border: none;
 		font-size: 20px;
 		font-weight: bold;
@@ -35,6 +35,6 @@
 		align-items: center;
 		flex-direction: column;
 		width: -webkit-fill-available;
-		background-color: var(--ali);
+		background-color: var(--items-color);
 	}
 </style>

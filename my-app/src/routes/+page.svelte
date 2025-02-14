@@ -46,11 +46,12 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		gap: var(--fasele);
+		gap: var(--items-gap);
+		color: white;
 	}
 
 	.head {
-		background-color: var(--ali);
+		background-color: var(--items-color);
 	}
 
 	.sidebar {

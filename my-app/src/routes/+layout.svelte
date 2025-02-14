@@ -5,8 +5,8 @@
 <style>
 	:global(body) {
 		margin: 0;
-		--fasele: 8px;
-		--ali: rgb(105, 105, 105);
+		--items-gap: 8px;
+		--items-color: rgb(105, 105, 105);
         font-family: Arial, Helvetica, sans-serif;
 	}
 	.container {
