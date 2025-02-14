@@ -4,14 +4,26 @@
 	export let timestamp: number;
 </script>
 
+<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add"
+/>
+<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=remove"
+/>
 <div class="item">
-	<button class="btn">-</button>
+	<button class="btn">
+		<span class="material-symbols-outlined"> remove </span>
+	</button>
 	<div class="content">
 		<div class="title">{title}</div>
 		<div class="title">{count}</div>
 		<div class="title">{timestamp}</div>
 	</div>
-	<button class="btn">+</button>
+	<button class="btn">
+		<span class="material-symbols-outlined"> add </span>
+	</button>
 </div>
 
 <style>
@@ -19,15 +31,19 @@
 		display: flex;
 		flex-direction: row;
 		gap: var(--items-gap);
+		line-height: 2em;
 	}
 	.btn {
-		width: 10%;
-		text-align: center;
-		line-height: 5em;
+		display: grid;
+		width: 20%;
 		background-color: var(--items-color);
 		border: none;
-		font-size: 20px;
-		font-weight: bold;
+		align-items: center;
+	}
+
+	.material-symbols-outlined {
+		font-size: 25px;
+		color: white;
 	}
 	.content {
 		display: flex;
