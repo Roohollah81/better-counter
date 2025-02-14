@@ -30,6 +30,7 @@
 	}
 	.content {
 		display: flex;
+		align-items: center; 
 		flex-direction: column;
 		width: -webkit-fill-available;
 		background-color: var(--ali);

@@ -48,6 +48,7 @@
 		width: 100%;
 		gap: var(--fasele);
 	}
+
 	.head {
 		background-color: var(--ali);
 	}
