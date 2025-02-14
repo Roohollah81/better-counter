@@ -27,8 +27,8 @@
 
 <div class="rows">
 	<div class="head">
-		Better Counter
-		<label>
+		<h3 class="head-title">Better Counter</h3>
+		<label class="show-sidebar-checkbox">
 			<input type="checkbox" bind:checked={showSidebar} />
 			visible
 		</label>
@@ -42,16 +42,29 @@
 {/if}
 
 <style>
+	.head {
+		display: flex;
+		width: 100%;
+		height: 50px;
+		background-color: var(--items-color);
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.head-title {
+		margin-left: 20px;
+	}
+	
+	.show-sidebar-checkbox {
+		margin-right: 10px;	
+	}
+
 	.rows {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
 		gap: var(--items-gap);
 		color: white;
-	}
-
-	.head {
-		background-color: var(--items-color);
 	}
 
 	.sidebar {
