@@ -19,7 +19,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		gap:var(--fasele);
+		gap: var(--fasele);
 	}
 	.btn {
 		width: 10%;
@@ -27,10 +27,12 @@
 		line-height: 3em;
 		background-color: var(--ali);
 		border: none;
+		font-size: 20px;
+		font-weight: bold;
 	}
 	.content {
 		display: flex;
-		align-items: center; 
+		align-items: center;
 		flex-direction: column;
 		width: -webkit-fill-available;
 		background-color: var(--ali);
