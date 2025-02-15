@@ -87,7 +87,7 @@
 		right: 0;
 		bottom: 0;
 		color: white;
-		height: 200px;
+		height: 400px;
 		position: fixed;
 		animation: all 0.2s;
 		background-color: #414141;
