@@ -58,12 +58,12 @@
 
 <style>
 	.head {
-		display: flex;
 		width: 100%;
 		height: 50px;
-		background-color: var(--items-color);
+		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		background-color: var(--items-color);
 	}
 
 	.head-title {
@@ -75,21 +75,22 @@
 	}
 
 	.rows {
-		display: flex;
-		flex-direction: column;
 		width: 100%;
-		gap: var(--items-gap);
 		color: white;
+		display: flex;
+		gap: var(--items-gap);
+		flex-direction: column;
 	}
 
 	.sidebar {
-		background-color: #6c7d77;
-		position: fixed;
-		bottom: 0;
 		left: 0;
 		right: 0;
+		bottom: 0;
+		color: white;
 		height: 200px;
+		position: fixed;
 		animation: all 0.2s;
+		background-color: var(--items-color);
 	}
 
 	.sidebar-title {

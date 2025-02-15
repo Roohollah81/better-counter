@@ -31,21 +31,21 @@
 <style>
 	.item {
 		display: flex;
+		line-height: 2em;
 		flex-direction: row;
 		gap: var(--items-gap);
-		line-height: 2em;
 	}
 	.btn {
-		display: grid;
 		width: 20%;
-		background-color: var(--items-color);
 		border: none;
+		display: grid;
 		align-items: center;
+		background-color: var(--items-color);
 	}
 
 	.material-symbols-outlined {
-		font-size: 25px;
 		color: white;
+		font-size: 25px;
 	}
 	.content {
 		display: flex;
