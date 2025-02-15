@@ -7,7 +7,7 @@
 		margin: 0;
 		--items-gap: 8px;
 		--items-color: rgb(105, 105, 105);
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: Roboto;
 	}
 	.container {
 		background-color: #3a3a3a;
