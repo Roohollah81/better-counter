@@ -5,9 +5,11 @@
 	import { fly } from 'svelte/transition';
 
 	let selectedTitle = '';
+	let showSidebar = false;
 
 	function handleClick(title: string) {
 		selectedTitle = title;
+		showSidebar = true;
 	}
 
 	const items = [
@@ -25,12 +27,6 @@
 		{ title: 'Title name 12', count: 7, timestamp: 1739548594 },
 		{ title: 'Title name 13', count: 7, timestamp: 1739548594 }
 	];
-
-	let showSidebar = false;
-
-	onMount(() => {
-		showSidebar = true;
-	});
 </script>
 
 <div class="rows">
@@ -38,7 +34,7 @@
 		<h3 class="head-title">Better Counter</h3>
 		<label class="show-sidebar-checkbox">
 			<input type="checkbox" bind:checked={showSidebar} />
-			visible
+			Chart
 		</label>
 	</div>
 	{#each items as item}
@@ -52,7 +48,7 @@
 </div>
 {#if showSidebar}
 	<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
-		<h3 class="sidebar-title" style="bold" >{selectedTitle}</h3>
+		<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
 	</div>
 {/if}
 
