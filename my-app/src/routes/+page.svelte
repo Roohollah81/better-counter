@@ -90,7 +90,7 @@
 		height: 200px;
 		position: fixed;
 		animation: all 0.2s;
-		background-color: var(--items-color);
+		background-color: #414141;
 	}
 
 	.sidebar-title {
