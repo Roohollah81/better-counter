@@ -2,6 +2,16 @@
 	export let title: string;
 	export let count: number;
 	export let timestamp: number;
+
+	function addBtntHandleClick() {
+		count++;
+	}
+
+	function removeBtntHandleClick() {
+		if (count - 1 >= 0) {
+			count--;
+		}
+	}
 </script>
 
 <link
@@ -13,7 +23,7 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=remove"
 />
 <div class="item">
-	<button class="btn">
+	<button class="btn" on:click={() => removeBtntHandleClick()}>
 		<span class="material-symbols-outlined"> remove </span>
 	</button>
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -23,7 +33,7 @@
 		<div class="count">{count}</div>
 		<div class="timestamp">{timestamp}</div>
 	</div>
-	<button class="btn">
+	<button class="btn" on:click={() => addBtntHandleClick()}>
 		<span class="material-symbols-outlined"> add </span>
 	</button>
 </div>

@@ -7,7 +7,7 @@
 	let selectedTitle = '';
 	let showSidebar = false;
 
-	function handleClick(title: string) {
+	function handleClickOnRowContent(title: string) {
 		selectedTitle = title;
 		showSidebar = true;
 	}
@@ -39,7 +39,7 @@
 	</div>
 	{#each items as item}
 		<Row
-			on:click={() => handleClick(item.title)}
+			on:click={() => handleClickOnRowContent(item.title)}
 			title={item.title}
 			count={item.count}
 			timestamp={item.timestamp}
