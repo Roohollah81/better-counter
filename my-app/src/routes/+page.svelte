@@ -1,23 +1,29 @@
 <!-- src/routes/+page.svelte -->
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import Row from '../lib/Row.svelte';
 	import { fly } from 'svelte/transition';
 
+	let selectedTitle = '';
+
+	function handleClick(title: string) {
+		selectedTitle = title;
+	}
+
 	const items = [
-		{ title: 'asdfsf', count: 7, timestamp: 7924156416546 },
-		{ title: 'sdfgds', count: 7, timestamp: 7924156416546 },
-		{ title: 'gdsfg', count: 7, timestamp: 7924156416546 },
-		{ title: 'xcvzv', count: 7, timestamp: 7924156416546 },
-		{ title: 'sdgvbnfjkjk', count: 7, timestamp: 7924156416546 },
-		{ title: 'oyuio', count: 7, timestamp: 7924156416546 },
-		{ title: 'hkghl', count: 7, timestamp: 7924156416546 },
-		{ title: 'hkghl', count: 7, timestamp: 7924156416546 },
-		{ title: 'hkghl', count: 7, timestamp: 7924156416546 },
-		{ title: 'hkghl', count: 7, timestamp: 7924156416546 },
-		{ title: 'uio', count: 7, timestamp: 7924156416546 },
-		{ title: 'uio', count: 7, timestamp: 7924156416546 },
-		{ title: 'uio', count: 7, timestamp: 7924156416546 }
+		{ title: 'name1', count: 13, timestamp: 1739548594 },
+		{ title: 'name2', count: 3, timestamp: 1739548594 },
+		{ title: 'name3', count: 80, timestamp: 1739548594 },
+		{ title: 'name4', count: 6, timestamp: 1739548594 },
+		{ title: 'name5', count: 9, timestamp: 1739548594 },
+		{ title: 'name6', count: 8, timestamp: 1739548594 },
+		{ title: 'name7', count: 7, timestamp: 1739548594 },
+		{ title: 'name8', count: 7, timestamp: 1739548594 },
+		{ title: 'name9', count: 7, timestamp: 1739548594 },
+		{ title: 'name10', count: 7, timestamp: 1739548594 },
+		{ title: 'name11', count: 7, timestamp: 1739548594 },
+		{ title: 'name12', count: 7, timestamp: 1739548594 },
+		{ title: 'name13', count: 7, timestamp: 1739548594 }
 	];
 
 	let showSidebar = false;
@@ -36,11 +42,18 @@
 		</label>
 	</div>
 	{#each items as item}
-		<Row title={item.title} count={item.count} timestamp={item.timestamp}></Row>
+		<Row
+			on:click={() => handleClick(item.title)}
+			title={item.title}
+			count={item.count}
+			timestamp={item.timestamp}
+		></Row>
 	{/each}
 </div>
 {#if showSidebar}
-	<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>salam</div>
+	<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
+		<h3 style="bold;">{selectedTitle}</h3>
+	</div>
 {/if}
 
 <style>
@@ -56,9 +69,9 @@
 	.head-title {
 		margin-left: 20px;
 	}
-	
+
 	.show-sidebar-checkbox {
-		margin-right: 10px;	
+		margin-right: 10px;
 	}
 
 	.rows {
@@ -70,7 +83,7 @@
 	}
 
 	.sidebar {
-		background-color: aquamarine;
+		background-color: #6c7d77;
 		position: fixed;
 		bottom: 0;
 		left: 0;

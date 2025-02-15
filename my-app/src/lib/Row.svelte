@@ -16,7 +16,9 @@
 	<button class="btn">
 		<span class="material-symbols-outlined"> remove </span>
 	</button>
-	<div class="content">
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class="content" on:click>
 		<div class="title">{title}</div>
 		<div class="title">{count}</div>
 		<div class="title">{timestamp}</div>
