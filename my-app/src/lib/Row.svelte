@@ -20,8 +20,8 @@
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div class="content" on:click>
 		<div class="title">{title}</div>
-		<div class="title">{count}</div>
-		<div class="title">{timestamp}</div>
+		<div class="count">{count}</div>
+		<div class="timestamp">{timestamp}</div>
 	</div>
 	<button class="btn">
 		<span class="material-symbols-outlined"> add </span>
@@ -42,7 +42,9 @@
 		align-items: center;
 		background-color: var(--items-color);
 	}
-
+	.count {
+		font-size: 20px;
+	}
 	.material-symbols-outlined {
 		color: white;
 		font-size: 25px;
