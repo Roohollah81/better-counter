@@ -27,7 +27,7 @@
 		// const seconds = diffInSeconds % 60
 
 		// Format the time difference
-		if (diffInSeconds > minutes || btnClicked) {
+		if (diffInSeconds < 60 || btnClicked) {
 			contentTime = `timeIcon Just now`;
 		} else {
 			contentTime = `timeIcon ${days}d ${hours}h ${minutes}m ago`;
