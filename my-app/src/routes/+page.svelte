@@ -13,19 +13,19 @@
 	}
 
 	const items = [
-		{ title: 'Title name 1', count: 13, timestamp: 1739548594 },
-		{ title: 'Title name 2', count: 3, timestamp: 1739548594 },
-		{ title: 'Title name 3', count: 80, timestamp: 1739548594 },
-		{ title: 'Title name 4', count: 6, timestamp: 1739548594 },
-		{ title: 'Title name 5', count: 9, timestamp: 1739548594 },
-		{ title: 'Title name 6', count: 8, timestamp: 1739548594 },
-		{ title: 'Title name 7', count: 7, timestamp: 1739548594 },
-		{ title: 'Title name 8', count: 7, timestamp: 1739548594 },
-		{ title: 'Title name 9', count: 7, timestamp: 1739548594 },
-		{ title: 'Title name 10', count: 7, timestamp: 1739548594 },
-		{ title: 'Title name 11', count: 7, timestamp: 1739548594 },
-		{ title: 'Title name 12', count: 7, timestamp: 1739548594 },
-		{ title: 'Title name 13', count: 7, timestamp: 1739548594 }
+		{ title: 'Title name 1', count: 13, timestamp: new Date() },
+		{ title: 'Title name 2', count: 3, timestamp: new Date() },
+		{ title: 'Title name 3', count: 80, timestamp: new Date() },
+		{ title: 'Title name 4', count: 6, timestamp: new Date() },
+		{ title: 'Title name 5', count: 9, timestamp: new Date() },
+		{ title: 'Title name 6', count: 8, timestamp: new Date() },
+		{ title: 'Title name 7', count: 7, timestamp: new Date() },
+		{ title: 'Title name 8', count: 7, timestamp: new Date() },
+		{ title: 'Title name 9', count: 7, timestamp: new Date() },
+		{ title: 'Title name 10', count: 7, timestamp: new Date() },
+		{ title: 'Title name 11', count: 7, timestamp: new Date() },
+		{ title: 'Title name 12', count: 7, timestamp: new Date() },
+		{ title: 'Title name 13', count: 7, timestamp: new Date() }
 	];
 </script>
 

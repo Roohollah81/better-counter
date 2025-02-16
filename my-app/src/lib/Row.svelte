@@ -1,13 +1,48 @@
 <script lang="ts">
 	export let title: string;
 	export let count: number;
-	export let timestamp: number;
+	export let timestamp: Date;
+	let contentTime: string;
 
-	function addBtntHandleClick() {
+	export function updateTime(btnClicked: boolean) {
+		const now = new Date();
+
+		if (btnClicked) {
+			timestamp = now;
+		}
+
+		const reference = new Date(timestamp); // Ensure referenceTime is a Date object
+
+		// Calculate the difference in seconds
+		const diffInSeconds = Math.floor((now.getTime() - reference.getTime()) / 1000);
+
+		if (diffInSeconds < 0) {
+			throw new Error('Reference time is in the future.');
+		}
+
+		// Convert seconds to days, hours, minutes, and seconds
+		const days = Math.floor(diffInSeconds / (3600 * 24));
+		const hours = Math.floor((diffInSeconds % (3600 * 24)) / 3600);
+		const minutes = Math.floor((diffInSeconds % 3600) / 60);
+		// const seconds = diffInSeconds % 60
+
+		// Format the time difference
+		if (diffInSeconds > minutes || btnClicked) {
+			contentTime = `timeIcon Just now`;
+		} else {
+			contentTime = `timeIcon ${days}d ${hours}h ${minutes}m ago`;
+		}
+	}
+
+	setInterval(() => {
+		updateTime(false);
+	}, 60 * 1000);
+
+	function addBtnHandleClick() {
 		count++;
 	}
 
-	function removeBtntHandleClick() {
+	function removeBtnHandleClick() {
 		if (count - 1 >= 0) {
 			count--;
 		}
@@ -23,7 +58,12 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=remove"
 />
 <div class="item">
-	<button class="btn" on:click={() => removeBtntHandleClick()}>
+	<button
+		class="btn"
+		on:click={() => {
+			removeBtnHandleClick(), updateTime(true);
+		}}
+	>
 		<span class="material-symbols-outlined"> remove </span>
 	</button>
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -31,9 +71,14 @@
 	<div class="content" on:click>
 		<div class="title">{title}</div>
 		<div class="count">{count}</div>
-		<div class="timestamp">{timestamp}</div>
+		<div class="timestamp">{contentTime}</div>
 	</div>
-	<button class="btn" on:click={() => addBtntHandleClick()}>
+	<button
+		class="btn"
+		on:click={() => {
+			addBtnHandleClick(), updateTime(true);
+		}}
+	>
 		<span class="material-symbols-outlined"> add </span>
 	</button>
 </div>
