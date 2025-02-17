@@ -13,7 +13,6 @@
 
 		const reference = new Date(timestamp); // Ensure referenceTime is a Date object
 
-		// Calculate the difference in seconds
 		const diffInSeconds = Math.floor((now.getTime() - reference.getTime()) / 1000);
 
 		if (diffInSeconds < 0) {
