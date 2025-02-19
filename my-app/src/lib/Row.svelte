@@ -2,7 +2,6 @@
 	export let title: string;
 	export let count: number;
 	export let timestamp: Date;
-	
 	let contentTime: string;
 
 	export function updateTime(btnClicked: boolean) {
