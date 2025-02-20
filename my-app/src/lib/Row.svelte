@@ -60,15 +60,7 @@
 
 <link
 	rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add"
-/>
-<link
-	rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=remove"
-/>
-<link
-	rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=schedule"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
 />
 <div class="item">
 	<button
@@ -85,7 +77,7 @@
 		<div class="title">{title}</div>
 		<div class="count">{count}</div>
 		<div class="timestamp">
-			<span class="material-symbols-outlined"> schedule </span>
+			<span class="material-symbols-outlined timeIcon">schedule</span>
 			{contentTime}
 		</div>
 	</div>
@@ -115,6 +107,13 @@
 	}
 	.count {
 		font-size: 20px;
+	}
+	.timestamp {
+		display: flex;
+		align-items: center;
+	}
+	.timeIcon {
+		margin-right: 5px;
 	}
 	.material-symbols-outlined {
 		color: white;
