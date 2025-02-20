@@ -27,9 +27,9 @@
 
 		// Format the time difference
 		if (diffInSeconds < 60 || btnClicked) {
-			contentTime = `timeIcon Just now`;
+			contentTime = `Just now`;
 		} else {
-			contentTime = `timeIcon `;
+			contentTime = '';
 			if (days) {
 				contentTime += `${days}d `;
 			}
@@ -66,6 +66,10 @@
 	rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=remove"
 />
+<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=schedule"
+/>
 <div class="item">
 	<button
 		class="btn"
@@ -80,7 +84,10 @@
 	<div class="content" on:click>
 		<div class="title">{title}</div>
 		<div class="count">{count}</div>
-		<div class="timestamp">{contentTime}</div>
+		<div class="timestamp">
+			<span class="material-symbols-outlined"> schedule </span>
+			{contentTime}
+		</div>
 	</div>
 	<button
 		class="btn"
