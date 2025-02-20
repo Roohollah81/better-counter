@@ -1,11 +1,9 @@
-<!-- src/routes/+page.svelte -->
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Row from '../lib/Row.svelte';
 	import { fly } from 'svelte/transition';
-
 	let selectedTitle = '';
 	let showSidebar = false;
+	let showAddItem = false;
 
 	function handleClickOnRowContent(title: string) {
 		selectedTitle = title;
@@ -27,6 +25,23 @@
 		{ title: 'Title name 12', count: 7, timestamp: new Date() },
 		{ title: 'Title name 13', count: 7, timestamp: new Date() }
 	];
+
+	const itemColors = ['blue', 'pink', 'yellow', 'gray', 'green'];
+
+	function addNewItem() {
+		showAddItem = true;
+		let itemName;
+		let intervalToDisplay;
+		let goal;
+		let itemColor;
+
+		let new_item = {
+			title: 'itemName',
+			count: 0,
+			timestamp: new Date()
+		};
+		items.push(new_item);
+	}
 </script>
 
 <div class="rows">
@@ -49,7 +64,7 @@
 <button
 	class="add-content"
 	on:click={() => {
-		addNewContent();
+		addNewItem();
 	}}
 >
 	<span class="material-symbols-outlined"> add </span>
@@ -57,6 +72,11 @@
 {#if showSidebar}
 	<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
 		<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
+	</div>
+{/if}
+{#if showAddItem}
+	<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
+		<h3 class="menu-title" style="bold">Add counter</h3>
 	</div>
 {/if}
 
@@ -74,11 +94,13 @@
 	}
 	.show-sidebar-checkbox {
 		margin-right: 10px;
+		cursor: pointer;
 	}
 	.rows {
 		width: 100%;
 		color: white;
 		display: flex;
+		cursor: pointer;
 		gap: var(--items-gap);
 		flex-direction: column;
 	}
@@ -106,5 +128,20 @@
 		border-radius: 20px;
 		cursor: pointer;
 		font-size: 0px;
+	}
+	.menu {
+		animation: all 0.2s;
+		background-color: #414141;
+		width: 350px;
+		height: 300px;
+		position: absolute;
+		color: rgb(226, 221, 221);
+		top: 50%;
+		left: 50%;
+		border-radius: 10px;
+		transform: translate(-50%, -50%);
+	}
+	.menu-title {
+		margin: 25px;
 	}
 </style>

@@ -102,6 +102,7 @@
 		width: 20%;
 		border: none;
 		display: grid;
+		cursor: pointer;
 		align-items: center;
 		background-color: var(--items-color);
 	}
