@@ -29,7 +29,17 @@
 		if (diffInSeconds < 60 || btnClicked) {
 			contentTime = `timeIcon Just now`;
 		} else {
-			contentTime = `timeIcon ${days}d ${hours}h ${minutes}m ago`;
+			contentTime = `timeIcon `;
+			if (days) {
+				contentTime += `${days}d `;
+			}
+			if (hours) {
+				contentTime += `${hours}h `;
+			}
+			if (minutes) {
+				contentTime += `${minutes}m `;
+			}
+			contentTime += 'ago';
 		}
 	}
 
