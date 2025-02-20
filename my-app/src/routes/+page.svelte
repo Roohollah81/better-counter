@@ -46,6 +46,14 @@
 		></Row>
 	{/each}
 </div>
+<button
+	class="add-content"
+	on:click={() => {
+		addNewContent();
+	}}
+>
+	<span class="material-symbols-outlined"> add </span>
+</button>
 {#if showSidebar}
 	<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
 		<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
@@ -61,15 +69,12 @@
 		justify-content: space-between;
 		background-color: var(--items-color);
 	}
-
 	.head-title {
 		margin-left: 20px;
 	}
-
 	.show-sidebar-checkbox {
 		margin-right: 10px;
 	}
-
 	.rows {
 		width: 100%;
 		color: white;
@@ -77,7 +82,6 @@
 		gap: var(--items-gap);
 		flex-direction: column;
 	}
-
 	.sidebar {
 		left: 0;
 		right: 0;
@@ -88,8 +92,19 @@
 		animation: all 0.2s;
 		background-color: #414141;
 	}
-
 	.sidebar-title {
 		margin: 10px;
+	}
+	.add-content {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		padding: 20px 20px;
+		background-color: #e7e7e7;
+		color: #414141;
+		border: none;
+		border-radius: 20px;
+		cursor: pointer;
+		font-size: 0px;
 	}
 </style>
