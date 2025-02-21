@@ -77,7 +77,7 @@
 {#if showAddItem}
 	<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
 		<h3 class="menu-title" style="bold">Add counter</h3>
-		<input type="text" bind:value={itemName} placeholder="item name" />
+		<input class="item-name-input" type="text" bind:value={itemName} placeholder="item name" />
 	</div>
 {/if}
 
@@ -144,5 +144,18 @@
 	}
 	.menu-title {
 		margin: 25px;
+	}
+	.item-name-input {
+		width: 300px;
+		height: 50px;
+		left: 14px;
+		position: absolute;
+		background-color: #414141;
+		border: 1px solid white;
+		border-radius: 5px;
+		padding-left: 15px;
+		outline: none;
+		font-size: 20px;
+		color: white;
 	}
 </style>
