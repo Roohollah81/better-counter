@@ -4,6 +4,7 @@
 	let selectedTitle = '';
 	let showSidebar = false;
 	let showAddItem = false;
+	let itemName: string;
 
 	function handleClickOnRowContent(title: string) {
 		selectedTitle = title;
@@ -30,7 +31,6 @@
 
 	function addNewItem() {
 		showAddItem = true;
-		let itemName;
 		let intervalToDisplay;
 		let goal;
 		let itemColor;
@@ -77,6 +77,7 @@
 {#if showAddItem}
 	<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
 		<h3 class="menu-title" style="bold">Add counter</h3>
+		<input type="text" bind:value={itemName} placeholder="item name" />
 	</div>
 {/if}
 
