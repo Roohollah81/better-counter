@@ -6,6 +6,15 @@
 	let showAddItem = false;
 	let itemName: string;
 
+	let selectedValue: string;
+
+	// Define the options for the drop-down list
+	const options = [
+		{ value: 'option1', label: 'Option 1' },
+		{ value: 'option2', label: 'Option 2' },
+		{ value: 'option3', label: 'Option 3' }
+	];
+
 	function handleClickOnRowContent(title: string) {
 		selectedTitle = title;
 		showSidebar = true;
@@ -77,7 +86,12 @@
 {#if showAddItem}
 	<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
 		<h3 class="menu-title" style="bold">Add counter</h3>
-		<input class="item-name-input" type="text" bind:value={itemName} placeholder="item name" />
+		<input class="item-name-input" type="text" bind:value={itemName} placeholder="Counter name" />
+		<select class="drop-down" bind:value={selectedValue}>
+			{#each options as option}
+				<option value={option.value}>{option.label}</option>
+			{/each}
+		</select>
 	</div>
 {/if}
 
@@ -156,6 +170,19 @@
 		padding-left: 15px;
 		outline: none;
 		font-size: 20px;
+		color: white;
+	}
+	.drop-down {
+		width: 190px;
+		height: 50px;
+		left: 14px;
+		position: absolute;
+		background-color: #414141;
+		border: 1px solid white;
+		border-radius: 5px;
+		padding-left: 15px;
+		margin-top: 70px;
+		font-size: 17px;
 		color: white;
 	}
 </style>
