@@ -4,6 +4,7 @@
 	let selectedTitle = '';
 	let showSidebar = false;
 	let showAddItem = false;
+	let goalCount = 0;
 	let itemName: string;
 
 	let selectedValue: string;
@@ -51,8 +52,22 @@
 		};
 		items.push(new_item);
 	}
+
+	function increaseGoal() {
+		goalCount++;
+	}
+
+	function decreaseGoal() {
+		if (goalCount - 1 >= 0) {
+			goalCount--;
+		}
+	}
 </script>
 
+<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+/>
 <div class="rows">
 	<div class="head">
 		<h3 class="head-title">Better Counter</h3>
@@ -92,6 +107,29 @@
 				<option value={option.value}>{option.label}</option>
 			{/each}
 		</select>
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<div class="select-goal">
+			<span
+				class="material-symbols-outlined"
+				on:click={() => {
+					decreaseGoal();
+				}}
+			>
+				remove
+			</span>
+			<div class="goal-count">
+				{goalCount}
+			</div>
+			<span
+				class="material-symbols-outlined"
+				on:click={() => {
+					increaseGoal();
+				}}
+			>
+				add
+			</span>
+		</div>
 	</div>
 {/if}
 
@@ -182,7 +220,23 @@
 		border-radius: 5px;
 		padding-left: 15px;
 		margin-top: 70px;
+		outline: none;
 		font-size: 17px;
 		color: white;
+	}
+	.select-goal {
+		width: 120px;
+		height: 48px;
+		position: absolute;
+		background-color: #414141;
+		border: 1px solid white;
+		border-radius: 5px;
+		margin-top: 70px;
+		right: 0;
+		margin-right: 17px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 20px;
 	}
 </style>
