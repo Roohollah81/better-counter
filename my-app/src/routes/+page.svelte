@@ -9,7 +9,7 @@
 
 	let selectedValue: string;
 
-	// Define the options for the drop-down list
+	// Define the options for the select-life-time list
 	const options = [
 		{ value: 'option1', label: 'Hourly' },
 		{ value: 'option2', label: 'Daily' },
@@ -104,35 +104,39 @@
 {#if showAddItem}
 	<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
 		<h3 class="menu-title" style="bold">Add counter</h3>
-		<input class="item-name-input" type="text" bind:value={itemName} placeholder="Counter name" />
-		<select class="drop-down" bind:value={selectedValue}>
-			{#each options as option}
-				<option value={option.value}>{option.label}</option>
-			{/each}
-		</select>
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div class="select-goal">
-			<span
-				class="material-symbols-outlined"
-				on:click={() => {
-					decreaseGoal();
-				}}
-			>
-				remove
-			</span>
-			<div class="goal-count">
-				{goalCount}
+		<input class="select-item-name" type="text" bind:value={itemName} placeholder="Counter name" />
+		<div class="life-time-and-goal">
+			<select class="select-life-time" bind:value={selectedValue}>
+				{#each options as option}
+					<option value={option.value}>{option.label}</option>
+				{/each}
+			</select>
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div class="select-goal">
+				<span
+					class="material-symbols-outlined"
+					on:click={() => {
+						decreaseGoal();
+					}}
+				>
+					remove
+				</span>
+				<div class="goal-count">
+					{goalCount}
+				</div>
+				<span
+					class="material-symbols-outlined"
+					on:click={() => {
+						increaseGoal();
+					}}
+				>
+					add
+				</span>
 			</div>
-			<span
-				class="material-symbols-outlined"
-				on:click={() => {
-					increaseGoal();
-				}}
-			>
-				add
-			</span>
 		</div>
+		<div class="select-color"></div>
+		<div class="save-cancel"></div>
 	</div>
 {/if}
 
@@ -171,7 +175,7 @@
 		background-color: #414141;
 	}
 	.sidebar-title {
-		margin: 10px;
+		margin-left: 10px;
 	}
 	.add-content {
 		position: fixed;
@@ -196,15 +200,19 @@
 		left: 50%;
 		border-radius: 10px;
 		transform: translate(-50%, -50%);
+		display: flex;
+		flex-direction: column;
+		align-content: center;
+		flex-wrap: wrap;
+		justify-content: space-between;
 	}
 	.menu-title {
-		margin: 25px;
+		margin: 15px 0px 0px 10px;
 	}
-	.item-name-input {
-		width: 300px;
+	.select-item-name {
+		width: 304px;
 		height: 50px;
 		left: 14px;
-		position: absolute;
 		background-color: #414141;
 		border: 1px solid white;
 		border-radius: 5px;
@@ -213,16 +221,13 @@
 		font-size: 20px;
 		color: white;
 	}
-	.drop-down {
+	.select-life-time {
 		width: 190px;
 		height: 50px;
-		left: 14px;
-		position: absolute;
 		background-color: #414141;
 		border: 1px solid white;
 		border-radius: 5px;
 		padding-left: 15px;
-		margin-top: 70px;
 		outline: none;
 		font-size: 17px;
 		color: white;
@@ -230,16 +235,31 @@
 	.select-goal {
 		width: 120px;
 		height: 48px;
-		position: absolute;
 		background-color: #414141;
 		border: 1px solid white;
 		border-radius: 5px;
-		margin-top: 70px;
 		right: 0;
-		margin-right: 17px;
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
 		font-size: 20px;
+	}
+	.life-time-and-goal {
+		display: flex;
+		justify-content: space-between;
+	}
+	.select-color {
+		width: 321px;
+		height: 50px;
+		background-color: #414141;
+		border: 1px solid white;
+		border-radius: 5px;
+	}
+	.save-cancel {
+		width: 321px;
+		height: 50px;
+		background-color: #414141;
+		border: 1px solid white;
+		border-radius: 5px;
 	}
 </style>
