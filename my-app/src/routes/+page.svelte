@@ -136,7 +136,10 @@
 			</div>
 		</div>
 		<div class="select-color"></div>
-		<div class="save-cancel"></div>
+		<div class="save-cancel">
+			<div class="save">Cancel</div>
+			<div class="save">Save</div>
+		</div>
 	</div>
 {/if}
 
