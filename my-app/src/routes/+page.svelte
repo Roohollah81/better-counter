@@ -137,7 +137,7 @@
 		</div>
 		<div class="select-color"></div>
 		<div class="save-cancel">
-			<div class="save">Cancel</div>
+			<div class="cancel">Cancel</div>
 			<div class="save">Save</div>
 		</div>
 	</div>
@@ -262,7 +262,23 @@
 		width: 321px;
 		height: 50px;
 		background-color: #414141;
-		border: 1px solid white;
 		border-radius: 5px;
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 10px;
+	}
+	.cancel {
+		width: 80px;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.save {
+		width: 80px;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
