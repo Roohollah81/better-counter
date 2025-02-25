@@ -189,7 +189,7 @@
 		height: 400px;
 		position: fixed;
 		animation: all 0.2s;
-		background-color: #414141;
+		background-color: #1e1e1e;
 	}
 	.sidebar-title {
 		margin-left: 10px;
@@ -200,7 +200,7 @@
 		right: 20px;
 		padding: 20px 20px;
 		background-color: #e7e7e7;
-		color: #414141;
+		color: #1e1e1e;
 		border: none;
 		border-radius: 20px;
 		cursor: pointer;
@@ -252,7 +252,6 @@
 	.select-goal {
 		width: 120px;
 		height: 48px;
-		background-color: #414141;
 		border: 1px solid white;
 		border-radius: 5px;
 		right: 0;
@@ -268,17 +267,14 @@
 	.select-color {
 		width: 321px;
 		height: 50px;
-		background-color: #414141;
 		border-radius: 5px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-left: 5px;
 	}
 	.save-cancel {
 		width: 321px;
 		height: 50px;
-		background-color: #414141;
 		border-radius: 5px;
 		display: flex;
 		justify-content: flex-end;
