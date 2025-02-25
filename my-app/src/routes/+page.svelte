@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Row from '../lib/Row.svelte';
+	import Row from '$lib/Row.svelte';
+	import ColorCircle from '$lib/ColorCircle.svelte';
 	import { fly } from 'svelte/transition';
 	let selectedTitle = '';
 	let showSidebar = false;
@@ -40,7 +41,16 @@
 		{ title: 'Title name 13', count: 7, timestamp: new Date() }
 	];
 
-	const itemColors = ['blue', 'pink', 'yellow', 'gray', 'green'];
+	const circles = [
+		{ color: 'Gray' },
+		{ color: 'Blue' },
+		{ color: 'Purple' },
+		{ color: 'Brown' },
+		{ color: 'Indigo' },
+		{ color: 'Orange' },
+		{ color: 'Pink' },
+		{ color: 'Green' }
+	];
 
 	function addNewItem() {
 		showAddItem = true;
@@ -135,7 +145,11 @@
 				</span>
 			</div>
 		</div>
-		<div class="select-color"></div>
+		<div class="select-color">
+			{#each circles as circle}
+				<ColorCircle color={circle.color}></ColorCircle>
+			{/each}
+		</div>
 		<div class="save-cancel">
 			<div class="cancel">Cancel</div>
 			<div class="save">Save</div>
@@ -255,8 +269,11 @@
 		width: 321px;
 		height: 50px;
 		background-color: #414141;
-		border: 1px solid white;
 		border-radius: 5px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-left: 5px;
 	}
 	.save-cancel {
 		width: 321px;
