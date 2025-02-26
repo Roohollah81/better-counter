@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts"> 
 	import Row from '$lib/Row.svelte';
 	import ColorCircle from '$lib/ColorCircle.svelte';
 	import { fly } from 'svelte/transition';
@@ -8,6 +8,7 @@
 	let goalCount = 0;
 	let itemName: string;
 
+	
 	let selectedValue: string;
 
 	// Define the options for the select-life-time list
