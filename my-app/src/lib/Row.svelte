@@ -2,7 +2,7 @@
 	export let title: string;
 	export let count: number;
 	export let timestamp: Date;
-	let contentTime: string;
+	let contentTime =   `Just now`;
 
 	export function updateTime(btnClicked: boolean) {
 		const now = new Date();
