@@ -6,19 +6,18 @@
 	let showSidebar = false;
 	let showAddItem = false;
 	let goalCount = 0;
-	let itemName: string;
-
-	
-	let selectedValue: string;
+	let newItemName = '';
+	let newItemLifeTime = 'Lifetime';
+	let showEmptyFieldWarningMessage = false;
 
 	// Define the options for the select-life-time list
 	const options = [
-		{ value: 'option1', label: 'Hourly' },
-		{ value: 'option2', label: 'Daily' },
-		{ value: 'option3', label: 'Weekly' },
-		{ value: 'option3', label: 'Monthly' },
-		{ value: 'option3', label: 'Yearly' },
-		{ value: 'option3', label: 'Lifetime' }
+		{ value: 'Hourly', label: 'Hourly' },
+		{ value: 'Daily', label: 'Daily' },
+		{ value: 'Weekly', label: 'Weekly' },
+		{ value: 'Monthly', label: 'Monthly' },
+		{ value: 'Yearly', label: 'Yearly' },
+		{ value: 'Lifetime', label: 'Lifetime' }
 	];
 
 	function handleClickOnRowContent(title: string) {
@@ -26,20 +25,10 @@
 		showSidebar = true;
 	}
 
-	const items = [
-		{ title: 'Title name 1', count: 13, timestamp: new Date() },
-		{ title: 'Title name 2', count: 3, timestamp: new Date() },
-		{ title: 'Title name 3', count: 80, timestamp: new Date() },
-		{ title: 'Title name 4', count: 6, timestamp: new Date() },
-		{ title: 'Title name 5', count: 9, timestamp: new Date() },
-		{ title: 'Title name 6', count: 8, timestamp: new Date() },
-		{ title: 'Title name 7', count: 7, timestamp: new Date() },
-		{ title: 'Title name 8', count: 7, timestamp: new Date() },
-		{ title: 'Title name 9', count: 7, timestamp: new Date() },
-		{ title: 'Title name 10', count: 7, timestamp: new Date() },
-		{ title: 'Title name 11', count: 7, timestamp: new Date() },
-		{ title: 'Title name 12', count: 7, timestamp: new Date() },
-		{ title: 'Title name 13', count: 7, timestamp: new Date() }
+	let items = [
+		{ title: 'Title 1', count: 13, timestamp: new Date() },
+		{ title: 'Title 2', count: 3, timestamp: new Date() },
+		{ title: 'Title 3', count: 80, timestamp: new Date() }
 	];
 
 	const circles = [
@@ -54,17 +43,13 @@
 	];
 
 	function addNewItem() {
-		showAddItem = true;
-		let intervalToDisplay;
-		let goal;
-		let itemColor;
-
-		let new_item = {
-			title: 'itemName',
-			count: 0,
-			timestamp: new Date()
-		};
-		items.push(new_item);
+		if (!newItemName) {
+			showEmptyFieldWarningMessage = true;
+		} else {
+			showAddItem = false;
+			let new_item = { title: newItemName, count: goalCount, timestamp: new Date() };
+			items = [...items, new_item];
+		}
 	}
 
 	function closeAddNewItemWindow() {
@@ -86,97 +71,109 @@
 	rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
 />
-<div class="rows">
-	<div class="head">
-		<h3 class="head-title">Better Counter</h3>
-		<label class="show-sidebar-checkbox">
-			<input type="checkbox" bind:checked={showSidebar} />
-			Chart
-		</label>
+
+<div class="body">
+	<div class="rows">
+		<div class="head">
+			<h3 class="head-title">Better Counter</h3>
+			<label class="show-sidebar-checkbox">
+				<input type="checkbox" bind:checked={showSidebar} />
+				Chart
+			</label>
+		</div>
+		{#each items as item}
+			<Row
+				on:click={() => handleClickOnRowContent(item.title)}
+				title={item.title}
+				count={item.count}
+				timestamp={item.timestamp}
+			></Row>
+		{/each}
 	</div>
-	{#each items as item}
-		<Row
-			on:click={() => handleClickOnRowContent(item.title)}
-			title={item.title}
-			count={item.count}
-			timestamp={item.timestamp}
-		></Row>
-	{/each}
-</div>
-<button
-	class="add-content"
-	on:click={() => {
-		addNewItem();
-	}}
->
-	<span class="material-symbols-outlined"> add </span>
-</button>
-{#if showSidebar}
-	<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
-		<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
-	</div>
-{/if}
-{#if showAddItem}
-	<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
-		<h3 class="menu-title" style="bold">Add counter</h3>
-		<input class="select-item-name" type="text" bind:value={itemName} placeholder="Counter name" />
-		<div class="life-time-and-goal">
-			<select class="select-life-time" bind:value={selectedValue}>
-				{#each options as option}
-					<option value={option.value}>{option.label}</option>
+	<button
+		class="add-content"
+		on:click={() => {
+			showEmptyFieldWarningMessage = false;
+			showAddItem = true;
+			goalCount = 0;
+			newItemName = '';
+			newItemLifeTime = 'Lifetime';
+		}}
+	>
+		<span class="material-symbols-outlined"> add </span>
+	</button>
+	{#if showSidebar}
+		<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
+			<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
+		</div>
+	{/if}
+	{#if showAddItem}
+		<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
+			<h3 class="menu-title" style="bold">Add counter</h3>
+			<input
+				class="select-item-name"
+				type="text"
+				bind:value={newItemName}
+				placeholder={showEmptyFieldWarningMessage ? 'Give the counter a name' : 'Counter name'}
+			/>
+			<div class="life-time-and-goal">
+				<select class="select-life-time" bind:value={newItemLifeTime}>
+					{#each options as option}
+						<option value={option.value}>{option.label} </option>
+					{/each}
+				</select>
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div class="select-goal">
+					<span
+						class="material-symbols-outlined"
+						on:click={() => {
+							decreaseGoal();
+						}}
+					>
+						remove
+					</span>
+					<div class="goal-count">
+						{goalCount}
+					</div>
+					<span
+						class="material-symbols-outlined"
+						on:click={() => {
+							increaseGoal();
+						}}
+					>
+						add
+					</span>
+				</div>
+			</div>
+			<div class="select-color">
+				{#each circles as circle}
+					<ColorCircle color={circle.color}></ColorCircle>
 				{/each}
-			</select>
+			</div>
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<div class="select-goal">
-				<span
-					class="material-symbols-outlined"
+			<div class="save-cancel">
+				<div
+					class="cancel"
 					on:click={() => {
-						decreaseGoal();
+						closeAddNewItemWindow();
 					}}
 				>
-					remove
-				</span>
-				<div class="goal-count">
-					{goalCount}
+					Cancel
 				</div>
-				<span
-					class="material-symbols-outlined"
+				<div
+					class="save"
 					on:click={() => {
-						increaseGoal();
+						addNewItem();
 					}}
 				>
-					add
-				</span>
+					Save
+				</div>
 			</div>
 		</div>
-		<div class="select-color">
-			{#each circles as circle}
-				<ColorCircle color={circle.color}></ColorCircle>
-			{/each}
-		</div>
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div class="save-cancel">
-			<div
-				class="cancel"
-				on:click={() => {
-					closeAddNewItemWindow();
-				}}
-			>
-				Cancel
-			</div>
-			<div
-				class="save"
-				on:click={() => {
-					addNewItem();
-				}}
-			>
-				Save
-			</div>
-		</div>
-	</div>
-{/if}
+	{/if}
+</div>
 
 <style>
 	.head {
@@ -314,5 +311,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+	.body {
+		width: 100%;
+		height: 100%;
+		background-color: #1e1e1e;
+		position: absolute;
 	}
 </style>
