@@ -1,4 +1,4 @@
-<script lang="ts"> 
+<script lang="ts">
 	import Row from '$lib/Row.svelte';
 	import ColorCircle from '$lib/ColorCircle.svelte';
 	import { fly } from 'svelte/transition';
@@ -65,6 +65,10 @@
 			timestamp: new Date()
 		};
 		items.push(new_item);
+	}
+
+	function closeAddNewItemWindow() {
+		showAddItem = false;
 	}
 
 	function increaseGoal() {
@@ -151,9 +155,25 @@
 				<ColorCircle color={circle.color}></ColorCircle>
 			{/each}
 		</div>
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div class="save-cancel">
-			<div class="cancel">Cancel</div>
-			<div class="save">Save</div>
+			<div
+				class="cancel"
+				on:click={() => {
+					closeAddNewItemWindow();
+				}}
+			>
+				Cancel
+			</div>
+			<div
+				class="save"
+				on:click={() => {
+					addNewItem();
+				}}
+			>
+				Save
+			</div>
 		</div>
 	</div>
 {/if}
