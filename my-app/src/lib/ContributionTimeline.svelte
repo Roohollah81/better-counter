@@ -1,11 +1,20 @@
-<script>
+<!-- src/lib/ContributionTimeline.svelte -->
+<script lang="ts">
 	// @ts-nocheck
 	import ActivityCalendarWidget from 'activity-calendar-widget/svelte';
+
+	export let data: { date: string; count: number }[];
+
+	// Convert the data to the format expected by ActivityCalendarWidget
+	const contributions = data.map((entry) => ({
+		date: entry.date,
+		count: entry.count
+	}));
 </script>
 
 <div class="timeline-container">
 	<div class="timeline">
-		<ActivityCalendarWidget daysToRender={365} />
+		<ActivityCalendarWidget daysToRender={365} {contributions} />
 	</div>
 </div>
 
