@@ -223,6 +223,7 @@
 		position: fixed;
 		animation: all 0.2s;
 		background-color: #1e1e1e;
+		border-top: 4px solid #1c293d;
 	}
 	.sidebar-title {
 		margin-left: 10px;
