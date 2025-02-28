@@ -2,7 +2,7 @@
 	import Row from '$lib/Row.svelte';
 	import ColorCircle from '$lib/ColorCircle.svelte';
 	import { fly } from 'svelte/transition';
-	import ContributionTimeline from "$lib/ContributionTimeline .svelte";
+	import ContributionTimeline from "$lib/ContributionTimeline.svelte";
 	let selectedTitle = '';
 	let showSidebar = false;
 	let showAddItem = false;
