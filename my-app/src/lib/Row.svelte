@@ -2,7 +2,8 @@
 	export let title: string;
 	export let count: number;
 	export let timestamp: Date;
-	let contentTime =   `Just now`;
+	export let selectedColor: string;
+	let contentTime = `Just now`;
 
 	export function updateTime(btnClicked: boolean) {
 		const now = new Date();
@@ -65,6 +66,7 @@
 <div class="item">
 	<button
 		class="btn"
+		style="background-color: {selectedColor};"
 		on:click={() => {
 			removeBtnHandleClick(), updateTime(true);
 		}}
@@ -73,7 +75,7 @@
 	</button>
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class="content" on:click>
+	<div class="content" style="background-color: {selectedColor};" on:click>
 		<div class="title">{title}</div>
 		<div class="count">{count}</div>
 		<div class="timestamp">
@@ -83,6 +85,7 @@
 	</div>
 	<button
 		class="btn"
+		style="background-color: {selectedColor};"
 		on:click={() => {
 			addBtnHandleClick(), updateTime(true);
 		}}

@@ -25,10 +25,16 @@
 		showSidebar = true;
 	}
 
+	let selectedColor: string = 'Gray';
+
+	function handleColorSelection(color: string) {
+		selectedColor = color;
+	}
+
 	let items = [
-		{ title: 'Title 1', count: 13, timestamp: new Date() },
-		{ title: 'Title 2', count: 3, timestamp: new Date() },
-		{ title: 'Title 3', count: 80, timestamp: new Date() }
+		{ title: 'Title 1', count: 13, timestamp: new Date(), color: selectedColor },
+		{ title: 'Title 2', count: 3, timestamp: new Date(), color: selectedColor },
+		{ title: 'Title 3', count: 80, timestamp: new Date(), color: selectedColor }
 	];
 
 	const circles = [
@@ -47,7 +53,12 @@
 			showEmptyFieldWarningMessage = true;
 		} else {
 			showAddItem = false;
-			let new_item = { title: newItemName, count: goalCount, timestamp: new Date() };
+			let new_item = {
+				title: newItemName,
+				count: goalCount,
+				timestamp: new Date(),
+				color: selectedColor
+			};
 			items = [...items, new_item];
 		}
 	}
@@ -87,6 +98,7 @@
 				title={item.title}
 				count={item.count}
 				timestamp={item.timestamp}
+				selectedColor={item.color}
 			></Row>
 		{/each}
 	</div>
@@ -98,6 +110,7 @@
 			goalCount = 0;
 			newItemName = '';
 			newItemLifeTime = 'Lifetime';
+			selectedColor = 'Gray';
 		}}
 	>
 		<span class="material-symbols-outlined"> add </span>
@@ -148,7 +161,7 @@
 			</div>
 			<div class="select-color">
 				{#each circles as circle}
-					<ColorCircle color={circle.color}></ColorCircle>
+					<ColorCircle color={circle.color} on:click={() => handleColorSelection(circle.color)} />
 				{/each}
 			</div>
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
