@@ -2,6 +2,7 @@
 	import Row from '$lib/Row.svelte';
 	import ColorCircle from '$lib/ColorCircle.svelte';
 	import { fly } from 'svelte/transition';
+	import ContributionTimeline from "$lib/ContributionTimeline .svelte";
 	let selectedTitle = '';
 	let showSidebar = false;
 	let showAddItem = false;
@@ -118,6 +119,7 @@
 	{#if showSidebar}
 		<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
 			<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
+			<ContributionTimeline />
 		</div>
 	{/if}
 	{#if showAddItem}

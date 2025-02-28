@@ -36,5 +36,8 @@
 		"typescript-eslint": "^8.20.0",
 		"vite": "^6.0.0",
 		"vitest": "^3.0.0"
+	},
+	"dependencies": {
+		"activity-calendar-widget": "^0.0.18"
 	}
 }
