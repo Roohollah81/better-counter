@@ -1,21 +1,28 @@
 <script lang="ts">
 	// @ts-nocheck
 	import ActivityCalendarWidget from 'activity-calendar-widget/svelte';
+
+	// Declare the selectedItem prop
+	export let selectedItem;
+
+	// Reactive transformation of the selected item's data
+	$: transformedData = selectedItem
+		? [
+				{
+					date: selectedItem.timestamp.toISOString().split('T')[0], // Convert date to 'YYYY-MM-DD' format
+					activities: Array(selectedItem.count).fill({}) // Create an array of activities based on the count
+				}
+			]
+		: [];
 </script>
 
 <div class="timeline-container">
 	<div class="timeline">
-		<ActivityCalendarWidget
-			daysToRender={365}
-			data={[
-				{ date: { date }, activities: { activities } },
-				{ date: '2025-01-06', activities: [{}] },
-				{ date: '2025-01-07', activities: [{}, {}] },
-				{ date: '2025-01-08', activities: [{}, {}, {}] },
-				{ date: '2025-01-09', activities: [{}, {}, {}, {}] },
-				{ date: '2025-01-10', activities: [{}, {}, {}, {}, {}] }
-			]}
-		/>
+		{#if selectedItem}
+			<ActivityCalendarWidget daysToRender={365} data={transformedData} />
+		{:else}
+			<p>No item selected.</p>
+		{/if}
 	</div>
 </div>
 

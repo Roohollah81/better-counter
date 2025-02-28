@@ -2,7 +2,7 @@
 	import Row from '$lib/Row.svelte';
 	import ColorCircle from '$lib/ColorCircle.svelte';
 	import { fly } from 'svelte/transition';
-	import ContributionTimeline from "$lib/ContributionTimeline.svelte";
+	import ContributionTimeline from '$lib/ContributionTimeline.svelte';
 	let selectedTitle = '';
 	let showSidebar = false;
 	let showAddItem = false;
@@ -10,6 +10,7 @@
 	let newItemName = '';
 	let newItemLifeTime = 'Lifetime';
 	let showEmptyFieldWarningMessage = false;
+	let selectedColor: string = 'Gray';
 
 	// Define the options for the select-life-time list
 	const options = [
@@ -21,13 +22,6 @@
 		{ value: 'Lifetime', label: 'Lifetime' }
 	];
 
-	function handleClickOnRowContent(title: string) {
-		selectedTitle = title;
-		showSidebar = true;
-	}
-
-	let selectedColor: string = 'Gray';
-
 	function handleColorSelection(color: string) {
 		selectedColor = color;
 	}
@@ -35,8 +29,16 @@
 	let items = [
 		{ title: 'Title 1', count: 13, timestamp: new Date(), color: selectedColor },
 		{ title: 'Title 2', count: 3, timestamp: new Date(), color: selectedColor },
-		{ title: 'Title 3', count: 80, timestamp: new Date(), color: selectedColor }
+		{ title: 'Title 3', count: 5, timestamp: new Date(), color: selectedColor }
 	];
+
+	let selectedItem: {};
+
+	function handleClickOnRowContent(title: string, item: any) {
+		selectedTitle = title;
+		showSidebar = true;
+		selectedItem = item;
+	}
 
 	const circles = [
 		{ color: 'Gray' },
@@ -95,7 +97,7 @@
 		</div>
 		{#each items as item}
 			<Row
-				on:click={() => handleClickOnRowContent(item.title)}
+				on:click={() => handleClickOnRowContent(item.title, item)}
 				title={item.title}
 				count={item.count}
 				timestamp={item.timestamp}
@@ -119,7 +121,7 @@
 	{#if showSidebar}
 		<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
 			<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
-			<ContributionTimeline />
+			<ContributionTimeline {selectedItem} />
 		</div>
 	{/if}
 	{#if showAddItem}
