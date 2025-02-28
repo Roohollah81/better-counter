@@ -1,11 +1,21 @@
-<script>
+<script lang="ts">
 	// @ts-nocheck
 	import ActivityCalendarWidget from 'activity-calendar-widget/svelte';
 </script>
 
 <div class="timeline-container">
 	<div class="timeline">
-		<ActivityCalendarWidget daysToRender={365} />
+		<ActivityCalendarWidget
+			daysToRender={365}
+			data={[
+				{ date: { date }, activities: { activities } },
+				{ date: '2025-01-06', activities: [{}] },
+				{ date: '2025-01-07', activities: [{}, {}] },
+				{ date: '2025-01-08', activities: [{}, {}, {}] },
+				{ date: '2025-01-09', activities: [{}, {}, {}, {}] },
+				{ date: '2025-01-10', activities: [{}, {}, {}, {}, {}] }
+			]}
+		/>
 	</div>
 </div>
 
