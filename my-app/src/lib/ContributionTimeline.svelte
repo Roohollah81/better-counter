@@ -7,12 +7,10 @@
 
 	// Reactive transformation of the selected item's data
 	$: transformedData = selectedItem
-		? [
-				{
-					date: selectedItem.timestamp.toISOString().split('T')[0], // Convert date to 'YYYY-MM-DD' format
-					activities: Array(selectedItem.count).fill({}) // Create an array of activities based on the count
-				}
-			]
+		? selectedItem.contributions.map((contribution) => ({
+				date: contribution.date,
+				activities: Array(contribution.count).fill({})
+			}))
 		: [];
 </script>
 

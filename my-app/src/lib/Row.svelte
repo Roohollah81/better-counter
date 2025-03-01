@@ -1,60 +1,26 @@
 <script lang="ts">
 	export let title: string;
-	export let count: number;
-	export let timestamp: Date;
 	export let selectedColor: string;
+	export let contributions: any;
 	let contentTime = `Just now`;
 
-	export function updateTime(btnClicked: boolean) {
-		const now = new Date();
+	const today = new Date().toISOString().split('T')[0];
 
-		if (btnClicked) {
-			timestamp = now;
-		}
-
-		const reference = new Date(timestamp); // Ensure referenceTime is a Date object
-
-		const diffInSeconds = Math.floor((now.getTime() - reference.getTime()) / 1000);
-
-		if (diffInSeconds < 0) {
-			throw new Error('Reference time is in the future.');
-		}
-
-		// Convert seconds to days, hours, minutes, and seconds
-		const days = Math.floor(diffInSeconds / (3600 * 24));
-		const hours = Math.floor((diffInSeconds % (3600 * 24)) / 3600);
-		const minutes = Math.floor((diffInSeconds % 3600) / 60);
-		// const seconds = diffInSeconds % 60
-
-		// Format the time difference
-		if (diffInSeconds < 60 || btnClicked) {
-			contentTime = `Just now`;
-		} else {
-			contentTime = '';
-			if (days) {
-				contentTime += `${days}d `;
-			}
-			if (hours) {
-				contentTime += `${hours}h `;
-			}
-			if (minutes) {
-				contentTime += `${minutes}m `;
-			}
-			contentTime += 'ago';
-		}
+	// Find today's contribution or initialize it
+	let todayContribution = contributions.find((c: { date: string }) => c.date === today);
+	if (!todayContribution) {
+		todayContribution = { date: today, count: 0 };
+		contributions.push(todayContribution);
 	}
 
-	setInterval(() => {
-		updateTime(false);
-	}, 60 * 1000);
-
+	// Update the count for today's contribution
 	function addBtnHandleClick() {
-		count++;
+		todayContribution.count++;
 	}
 
 	function removeBtnHandleClick() {
-		if (count - 1 >= 0) {
-			count--;
+		if (todayContribution.count > 0) {
+			todayContribution.count--;
 		}
 	}
 </script>
@@ -68,7 +34,7 @@
 		class="btn"
 		style="background-color: {selectedColor};"
 		on:click={() => {
-			removeBtnHandleClick(), updateTime(true);
+			removeBtnHandleClick();
 		}}
 	>
 		<span class="material-symbols-outlined"> remove </span>
@@ -77,7 +43,7 @@
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div class="content" style="background-color: {selectedColor};" on:click>
 		<div class="title">{title}</div>
-		<div class="count">{count}</div>
+		<div class="count">{todayContribution.count}</div>
 		<div class="timestamp">
 			<span class="material-symbols-outlined timeIcon">schedule</span>
 			{contentTime}
@@ -87,7 +53,7 @@
 		class="btn"
 		style="background-color: {selectedColor};"
 		on:click={() => {
-			addBtnHandleClick(), updateTime(true);
+			addBtnHandleClick();
 		}}
 	>
 		<span class="material-symbols-outlined"> add </span>

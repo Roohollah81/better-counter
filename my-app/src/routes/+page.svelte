@@ -27,13 +27,36 @@
 	}
 
 	let items = [
-		{ title: 'Title 1', count: 13, timestamp: new Date(), color: selectedColor },
-		{ title: 'Title 2', count: 3, timestamp: new Date(), color: selectedColor },
-		{ title: 'Title 3', count: 5, timestamp: new Date(), color: selectedColor }
+		{
+			title: 'Title 1',
+			contributions: [
+				{ date: '2025-01-01', count: 5 },
+				{ date: '2025-01-02', count: 10 },
+				{ date: '2025-01-03', count: 7 }
+			],
+			color: selectedColor
+		},
+		{
+			title: 'Title 2',
+			contributions: [
+				{ date: '2025-01-01', count: 3 },
+				{ date: '2025-01-02', count: 8 },
+				{ date: '2025-01-03', count: 2 }
+			],
+			color: selectedColor
+		},
+		{
+			title: 'Title 3',
+			contributions: [
+				{ date: '2025-01-01', count: 1 },
+				{ date: '2025-01-02', count: 4 },
+				{ date: '2025-01-03', count: 6 }
+			],
+			color: selectedColor
+		}
 	];
 
 	let selectedItem: {};
-
 	function handleClickOnRowContent(title: string, item: any) {
 		selectedTitle = title;
 		showSidebar = true;
@@ -58,9 +81,8 @@
 			showAddItem = false;
 			let new_item = {
 				title: newItemName,
-				count: goalCount,
-				timestamp: new Date(),
-				color: selectedColor
+				color: selectedColor,
+				contributions: [{ date: new Date().toISOString(), count: goalCount }]
 			};
 			items = [...items, new_item];
 		}
@@ -99,8 +121,7 @@
 			<Row
 				on:click={() => handleClickOnRowContent(item.title, item)}
 				title={item.title}
-				count={item.count}
-				timestamp={item.timestamp}
+				contributions={item.contributions}
 				selectedColor={item.color}
 			></Row>
 		{/each}
