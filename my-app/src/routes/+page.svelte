@@ -30,7 +30,7 @@
 		{
 			title: 'Title 1',
 			contributions: [
-				{ date: '2025-01-01', count: 5 },
+				{ date: '2025-03-01', count: 5 },
 				{ date: '2025-01-02', count: 10 },
 				{ date: '2025-01-03', count: 7 }
 			],
