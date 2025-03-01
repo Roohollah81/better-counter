@@ -2,7 +2,51 @@
 	export let title: string;
 	export let selectedColor: string;
 	export let contributions: any;
+	export let timestamp: Date;
 	let contentTime = `Just now`;
+
+	export function updateTime(btnClicked: boolean) {
+		const now = new Date();
+
+		if (btnClicked) {
+			timestamp = now;
+		}
+
+		const reference = new Date(timestamp); // Ensure referenceTime is a Date object
+
+		const diffInSeconds = Math.floor((now.getTime() - reference.getTime()) / 1000);
+
+		if (diffInSeconds < 0) {
+			throw new Error('Reference time is in the future.');
+		}
+
+		// Convert seconds to days, hours, minutes, and seconds
+		const days = Math.floor(diffInSeconds / (3600 * 24));
+		const hours = Math.floor((diffInSeconds % (3600 * 24)) / 3600);
+		const minutes = Math.floor((diffInSeconds % 3600) / 60);
+		// const seconds = diffInSeconds % 60
+
+		// Format the time difference
+		if (diffInSeconds < 60 || btnClicked) {
+			contentTime = `Just now`;
+		} else {
+			contentTime = '';
+			if (days) {
+				contentTime += `${days}d `;
+			}
+			if (hours) {
+				contentTime += `${hours}h `;
+			}
+			if (minutes) {
+				contentTime += `${minutes}m `;
+			}
+			contentTime += 'ago';
+		}
+	}
+
+	setInterval(() => {
+		updateTime(false);
+	}, 60 * 1000);
 
 	const today = new Date().toISOString().split('T')[0];
 
@@ -34,7 +78,7 @@
 		class="btn"
 		style="background-color: {selectedColor};"
 		on:click={() => {
-			removeBtnHandleClick();
+			removeBtnHandleClick(), updateTime(true);
 		}}
 	>
 		<span class="material-symbols-outlined"> remove </span>
@@ -53,7 +97,7 @@
 		class="btn"
 		style="background-color: {selectedColor};"
 		on:click={() => {
-			addBtnHandleClick();
+			addBtnHandleClick(), updateTime(true);
 		}}
 	>
 		<span class="material-symbols-outlined"> add </span>

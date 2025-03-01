@@ -121,6 +121,7 @@
 			<Row
 				on:click={() => handleClickOnRowContent(item.title, item)}
 				title={item.title}
+				timestamp={new Date()}
 				contributions={item.contributions}
 				selectedColor={item.color}
 			></Row>
