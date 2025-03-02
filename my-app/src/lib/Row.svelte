@@ -1,8 +1,13 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
 	export let title: string;
 	export let selectedColor: string;
 	export let contributions: any;
-	export let timestamp: Date;
+	export let timestamp: any;
+
 	let contentTime = `Just now`;
 
 	export function updateTime(btnClicked: boolean) {
@@ -60,11 +65,13 @@
 	// Update the count for today's contribution
 	function addBtnHandleClick() {
 		todayContribution.count++;
+		dispatch('update'); // Emit an event
 	}
 
 	function removeBtnHandleClick() {
 		if (todayContribution.count > 0) {
 			todayContribution.count--;
+			dispatch('update'); // Emit an event
 		}
 	}
 </script>

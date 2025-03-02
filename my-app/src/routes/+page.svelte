@@ -26,35 +26,60 @@
 		selectedColor = color;
 	}
 
-	let items = [
-		{
-			title: 'Title 1',
-			contributions: [
-				{ date: '2025-03-01', count: 5 },
-				{ date: '2025-01-02', count: 10 },
-				{ date: '2025-01-03', count: 7 }
-			],
-			color: selectedColor
-		},
-		{
-			title: 'Title 2',
-			contributions: [
-				{ date: '2025-01-01', count: 3 },
-				{ date: '2025-01-02', count: 8 },
-				{ date: '2025-01-03', count: 2 }
-			],
-			color: selectedColor
-		},
-		{
-			title: 'Title 3',
-			contributions: [
-				{ date: '2025-01-01', count: 1 },
-				{ date: '2025-01-02', count: 4 },
-				{ date: '2025-01-03', count: 6 }
-			],
-			color: selectedColor
+	// Initialize items with data from localStorage (if available)
+	let items: any[] = [];
+	if (typeof window !== 'undefined') {
+		const savedItems = localStorage.getItem('items');
+		if (savedItems) {
+			items = JSON.parse(savedItems);
+		} else {
+			// Default items if no data is found in localStorage
+			items = [
+				{
+					title: 'Title 1',
+					contributions: [
+						{ date: '2025-03-01', count: 5 },
+						{ date: '2025-01-02', count: 10 },
+						{ date: '2025-01-03', count: 7 }
+					],
+					color: selectedColor
+				},
+				{
+					title: 'Title 2',
+					contributions: [
+						{ date: '2025-01-01', count: 3 },
+						{ date: '2025-01-02', count: 8 },
+						{ date: '2025-01-03', count: 2 }
+					],
+					color: selectedColor
+				},
+				{
+					title: 'Title 3',
+					contributions: [
+						{ date: '2025-01-01', count: 1 },
+						{ date: '2025-01-02', count: 4 },
+						{ date: '2025-01-03', count: 6 }
+					],
+					color: selectedColor
+				}
+			];
 		}
-	];
+	}
+
+	// Save items to localStorage whenever it changes
+	$: {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem('items', JSON.stringify(items));
+		}
+	}
+
+	// Load items from localStorage when the page loads
+	if (typeof window !== 'undefined') {
+		const savedItems = localStorage.getItem('items');
+		if (savedItems) {
+			items = JSON.parse(savedItems);
+		}
+	}
 
 	let selectedItem: {};
 	function handleClickOnRowContent(title: string, item: any) {
@@ -101,6 +126,12 @@
 			goalCount--;
 		}
 	}
+
+	// Function to handle updates from Row
+	function handleUpdate(itemIndex: number) {
+		items[itemIndex].contributions = [...items[itemIndex].contributions]; // Trigger reactivity
+		items = items; // Reassign to trigger reactivity
+	}
 </script>
 
 <link
@@ -117,9 +148,10 @@
 				Chart
 			</label>
 		</div>
-		{#each items as item}
+		{#each items as item, index}
 			<Row
 				on:click={() => handleClickOnRowContent(item.title, item)}
+				on:update={() => handleUpdate(index)}
 				title={item.title}
 				timestamp={new Date()}
 				contributions={item.contributions}
