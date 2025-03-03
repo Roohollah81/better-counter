@@ -6,18 +6,22 @@
 	export let title: string;
 	export let selectedColor: string;
 	export let contributions: any;
-	export let timestamp: any;
 
 	let contentTime = `Just now`;
 
-	export function updateTime(btnClicked: boolean) {
+	const today = new Date().toISOString().split('T')[0];
+
+	// Find today's contribution or initialize it
+	let todayContribution = contributions.find((c: { date: string }) => c.date === today);
+	if (!todayContribution) {
+		todayContribution = { date: today, count: 0, timestamp: new Date().toISOString() };
+		contributions.push(todayContribution);
+	}
+
+	export function updateTime() {
 		const now = new Date();
 
-		if (btnClicked) {
-			timestamp = now;
-		}
-
-		const reference = new Date(timestamp); // Ensure referenceTime is a Date object
+		const reference = new Date(todayContribution.timestamp); // Use the contribution's timestamp
 
 		const diffInSeconds = Math.floor((now.getTime() - reference.getTime()) / 1000);
 
@@ -32,7 +36,7 @@
 		// const seconds = diffInSeconds % 60
 
 		// Format the time difference
-		if (diffInSeconds < 60 || btnClicked) {
+		if (diffInSeconds < 60) {
 			contentTime = `Just now`;
 		} else {
 			contentTime = '';
@@ -49,31 +53,28 @@
 		}
 	}
 
+	// Update the time display every minute
 	setInterval(() => {
-		updateTime(false);
+		updateTime();
 	}, 60 * 1000);
-
-	const today = new Date().toISOString().split('T')[0];
-
-	// Find today's contribution or initialize it
-	let todayContribution = contributions.find((c: { date: string }) => c.date === today);
-	if (!todayContribution) {
-		todayContribution = { date: today, count: 0 };
-		contributions.push(todayContribution);
-	}
 
 	// Update the count for today's contribution
 	function addBtnHandleClick() {
 		todayContribution.count++;
+		todayContribution.timestamp = new Date().toISOString(); // Update the timestamp
 		dispatch('update'); // Emit an event
 	}
 
 	function removeBtnHandleClick() {
 		if (todayContribution.count > 0) {
 			todayContribution.count--;
+			todayContribution.timestamp = new Date().toISOString(); // Update the timestamp
 			dispatch('update'); // Emit an event
 		}
 	}
+
+	// Initialize the time display
+	updateTime();
 </script>
 
 <link
@@ -85,7 +86,7 @@
 		class="btn"
 		style="background-color: {selectedColor};"
 		on:click={() => {
-			removeBtnHandleClick(), updateTime(true);
+			removeBtnHandleClick(), updateTime();
 		}}
 	>
 		<span class="material-symbols-outlined"> remove </span>
@@ -104,7 +105,7 @@
 		class="btn"
 		style="background-color: {selectedColor};"
 		on:click={() => {
-			addBtnHandleClick(), updateTime(true);
+			addBtnHandleClick(), updateTime();
 		}}
 	>
 		<span class="material-symbols-outlined"> add </span>
