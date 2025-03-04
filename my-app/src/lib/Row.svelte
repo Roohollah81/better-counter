@@ -6,6 +6,7 @@
 	export let title: string;
 	export let selectedColor: string;
 	export let contributions: any;
+	export let latestContributionTimestamp: string; // Add this prop
 
 	let contentTime = `Just now`;
 
@@ -21,7 +22,7 @@
 	export function updateTime() {
 		const now = new Date();
 
-		const reference = new Date(todayContribution.timestamp); // Use the contribution's timestamp
+		const reference = new Date(latestContributionTimestamp); // Use the latest contribution timestamp
 
 		const diffInSeconds = Math.floor((now.getTime() - reference.getTime()) / 1000);
 
@@ -61,14 +62,16 @@
 	// Update the count for today's contribution
 	function addBtnHandleClick() {
 		todayContribution.count++;
-		todayContribution.timestamp = new Date().toISOString(); // Update the timestamp
+		todayContribution.timestamp = new Date().toISOString(); // Update today's timestamp
+		latestContributionTimestamp = todayContribution.timestamp; // Update the latest contribution timestamp
 		dispatch('update'); // Emit an event
 	}
 
 	function removeBtnHandleClick() {
 		if (todayContribution.count > 0) {
 			todayContribution.count--;
-			todayContribution.timestamp = new Date().toISOString(); // Update the timestamp
+			todayContribution.timestamp = new Date().toISOString(); // Update today's timestamp
+			latestContributionTimestamp = todayContribution.timestamp; // Update the latest contribution timestamp
 			dispatch('update'); // Emit an event
 		}
 	}

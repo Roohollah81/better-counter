@@ -32,6 +32,12 @@
 		const savedItems = localStorage.getItem('items');
 		if (savedItems) {
 			items = JSON.parse(savedItems);
+			// Initialize latestContributionTimestamp for each item
+			items.forEach((item) => {
+				item.latestContributionTimestamp = item.contributions.reduce((latest: string, c: any) => {
+					return c.timestamp > latest ? c.timestamp : latest;
+				}, '');
+			});
 		} else {
 			// Default items if no data is found in localStorage
 			items = [
@@ -42,6 +48,7 @@
 						{ date: '2025-01-02', count: 10, timestamp: '2025-01-02T14:30:00.000Z' },
 						{ date: '2025-01-03', count: 7, timestamp: '2025-01-03T09:15:00.000Z' }
 					],
+					latestContributionTimestamp: '2025-01-03T09:15:00.000Z', // Initialize the latest timestamp
 					color: 'blue'
 				},
 				{
@@ -51,6 +58,7 @@
 						{ date: '2025-01-02', count: 8, timestamp: '2025-01-02T16:20:00.000Z' },
 						{ date: '2025-01-03', count: 2, timestamp: '2025-01-03T11:10:00.000Z' }
 					],
+					latestContributionTimestamp: '2025-01-03T11:10:00.000Z', // Initialize the latest timestamp
 					color: 'green'
 				}
 			];
@@ -121,6 +129,12 @@
 	// Function to handle updates from Row
 	function handleUpdate(itemIndex: number) {
 		items[itemIndex].contributions = [...items[itemIndex].contributions]; // Trigger reactivity
+		items[itemIndex].latestContributionTimestamp = items[itemIndex].contributions.reduce(
+			(latest: string, c: any) => {
+				return c.timestamp > latest ? c.timestamp : latest;
+			},
+			''
+		); // Update the latest contribution timestamp
 		items = items; // Reassign to trigger reactivity
 	}
 </script>
@@ -145,6 +159,7 @@
 				on:update={() => handleUpdate(index)}
 				title={item.title}
 				contributions={item.contributions}
+				latestContributionTimestamp={item.latestContributionTimestamp}
 				selectedColor={item.color}
 			></Row>
 		{/each}
