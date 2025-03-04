@@ -8,7 +8,7 @@
 	export let contributions: any;
 	export let latestContributionTimestamp: string; // Add this prop
 
-	let contentTime = `Just now`;
+	let contentTime = `Never`;
 
 	const today = new Date().toISOString().split('T')[0];
 
@@ -20,6 +20,11 @@
 	}
 
 	export function updateTime() {
+		if (!latestContributionTimestamp) {
+			contentTime = `Never`; // Display "Never" if no contributions have been made
+			return;
+		}
+
 		const now = new Date();
 
 		const reference = new Date(latestContributionTimestamp); // Use the latest contribution timestamp
@@ -65,6 +70,7 @@
 		todayContribution.timestamp = new Date().toISOString(); // Update today's timestamp
 		latestContributionTimestamp = todayContribution.timestamp; // Update the latest contribution timestamp
 		dispatch('update'); // Emit an event
+		updateTime(); // Update the time display
 	}
 
 	function removeBtnHandleClick() {
@@ -73,6 +79,7 @@
 			todayContribution.timestamp = new Date().toISOString(); // Update today's timestamp
 			latestContributionTimestamp = todayContribution.timestamp; // Update the latest contribution timestamp
 			dispatch('update'); // Emit an event
+			updateTime(); // Update the time display
 		}
 	}
 
@@ -89,7 +96,7 @@
 		class="btn"
 		style="background-color: {selectedColor};"
 		on:click={() => {
-			removeBtnHandleClick(), updateTime();
+			removeBtnHandleClick();
 		}}
 	>
 		<span class="material-symbols-outlined"> remove </span>
@@ -108,7 +115,7 @@
 		class="btn"
 		style="background-color: {selectedColor};"
 		on:click={() => {
-			addBtnHandleClick(), updateTime();
+			addBtnHandleClick();
 		}}
 	>
 		<span class="material-symbols-outlined"> add </span>

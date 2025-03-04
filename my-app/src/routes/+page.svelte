@@ -43,22 +43,14 @@
 			items = [
 				{
 					title: 'Title 1',
-					contributions: [
-						{ date: '2025-01-01', count: 5, timestamp: '2025-01-01T12:00:00.000Z' },
-						{ date: '2025-01-02', count: 10, timestamp: '2025-01-02T14:30:00.000Z' },
-						{ date: '2025-01-03', count: 7, timestamp: '2025-01-03T09:15:00.000Z' }
-					],
-					latestContributionTimestamp: '2025-01-03T09:15:00.000Z', // Initialize the latest timestamp
+					contributions: [],
+					latestContributionTimestamp: '', // Initialize as empty
 					color: 'blue'
 				},
 				{
 					title: 'Title 2',
-					contributions: [
-						{ date: '2025-01-01', count: 3, timestamp: '2025-01-01T08:45:00.000Z' },
-						{ date: '2025-01-02', count: 8, timestamp: '2025-01-02T16:20:00.000Z' },
-						{ date: '2025-01-03', count: 2, timestamp: '2025-01-03T11:10:00.000Z' }
-					],
-					latestContributionTimestamp: '2025-01-03T11:10:00.000Z', // Initialize the latest timestamp
+					contributions: [],
+					latestContributionTimestamp: '', // Initialize as empty
 					color: 'green'
 				}
 			];
