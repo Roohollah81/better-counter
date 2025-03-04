@@ -41,18 +41,18 @@
 		} else {
 			// Default items if no data is found in localStorage
 			items = [
-				{
-					title: 'Title 1',
-					contributions: [],
-					latestContributionTimestamp: '', // Initialize as empty
-					color: 'blue'
-				},
-				{
-					title: 'Title 2',
-					contributions: [],
-					latestContributionTimestamp: '', // Initialize as empty
-					color: 'green'
-				}
+				// {
+				// 	title: 'Title 1',
+				// 	contributions: [],
+				// 	latestContributionTimestamp: '', // Initialize as empty
+				// 	color: 'blue'
+				// },
+				// {
+				// 	title: 'Title 2',
+				// 	contributions: [],
+				// 	latestContributionTimestamp: '', // Initialize as empty
+				// 	color: 'green'
+				// }
 			];
 		}
 	}
