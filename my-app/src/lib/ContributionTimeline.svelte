@@ -27,22 +27,14 @@
 <style>
 	/* Base styles */
 	.timeline-container {
-		width: 100%; /* Full width of the parent container */
-		height: 400px; /* Fixed height for the container */
-		max-width: 100%; /* Ensure it doesn't exceed the page width */
-		overflow-x: auto; /* Enable horizontal scrolling */
-		overflow-y: auto; /* Enable vertical scrolling if needed */
-		padding: 16px;
-		background-color: #1c293d; /* Dark background (optional) */
-		border-radius: 6px; /* Rounded corners (optional) */
+		overflow-y: hidden;
+		background-color: #1c293d;
 	}
-
 	.timeline {
 		width: fit-content; /* Allow the timeline to grow as needed */
 		min-width: 100%; /* Ensure it takes at least the full width of the container */
 		height: 100%; /* Fill the container height */
 	}
-
 	/* Mobile styles */
 	@media (max-width: 768px) {
 		.timeline-container {

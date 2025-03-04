@@ -285,6 +285,7 @@
 		animation: all 0.2s;
 		background-color: #1e1e1e;
 		border-top: 4px solid #1c293d;
+		overflow-x: auto; /* Enable horizontal scrolling if needed */
 	}
 	.sidebar-title {
 		margin-left: 10px;
@@ -394,5 +395,6 @@
 		height: 100%;
 		background-color: #1e1e1e;
 		position: absolute;
+		overflow-x: hidden; /* Prevent horizontal overflow */
 	}
 </style>
