@@ -12,7 +12,6 @@
 	let showEmptyFieldWarningMessage = false;
 	let selectedColor: string = 'Gray';
 
-	// Define the options for the select-life-time list
 	const options = [
 		{ value: 'Hourly', label: 'Hourly' },
 		{ value: 'Daily', label: 'Daily' },
@@ -26,20 +25,17 @@
 		selectedColor = color;
 	}
 
-	// Initialize items with data from localStorage (if available)
 	let items: any[] = [];
 	if (typeof window !== 'undefined') {
 		const savedItems = localStorage.getItem('items');
 		if (savedItems) {
 			items = JSON.parse(savedItems);
-			// Initialize latestContributionTimestamp for each item
 			items.forEach((item) => {
 				item.latestContributionTimestamp = item.contributions.reduce((latest: string, c: any) => {
 					return c.timestamp > latest ? c.timestamp : latest;
 				}, '');
 			});
 		} else {
-			// Default items if no data is found in localStorage
 			items = [
 				// {
 				// 	title: 'Title 1',
@@ -57,14 +53,12 @@
 		}
 	}
 
-	// Save items to localStorage whenever it changes
 	$: {
 		if (typeof window !== 'undefined') {
 			localStorage.setItem('items', JSON.stringify(items));
 		}
 	}
 
-	// Load items from localStorage when the page loads
 	if (typeof window !== 'undefined') {
 		const savedItems = localStorage.getItem('items');
 		if (savedItems) {
@@ -118,7 +112,6 @@
 		}
 	}
 
-	// Function to handle updates from Row
 	function handleUpdate(itemIndex: number) {
 		items[itemIndex].contributions = [...items[itemIndex].contributions]; // Trigger reactivity
 		items[itemIndex].latestContributionTimestamp = items[itemIndex].contributions.reduce(
@@ -126,8 +119,8 @@
 				return c.timestamp > latest ? c.timestamp : latest;
 			},
 			''
-		); // Update the latest contribution timestamp
-		items = items; // Reassign to trigger reactivity
+		);
+		items = items;
 	}
 </script>
 
