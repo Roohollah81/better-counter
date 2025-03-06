@@ -7,10 +7,10 @@
 	export let selectedItem;
 
 	// Time range for the bar chart
-	let timeRange: 'hour' | 'day' | 'week' | 'year' = 'day';
+	let timeRange: 'hour' | 'day' | 'week' | 'year';
 
 	// Transform contributions data for the bar chart
-	$: chartData = selectedItem ? selectedItem.contributions : [];
+	$: data = selectedItem ? selectedItem.contributions : [];
 
 	// Reactive transformation of the selected item's data
 	$: transformedData = selectedItem
@@ -40,7 +40,7 @@
 		<option value="week">Per Week</option>
 		<option value="year">Per Year</option>
 	</select>
-	<BarChart {chartData} {timeRange} />
+	<BarChart {data} {timeRange} />
 </div>
 
 <style>
