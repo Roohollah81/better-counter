@@ -1,9 +1,16 @@
 <script lang="ts">
 	// @ts-nocheck
 	import ActivityCalendarWidget from 'activity-calendar-widget/svelte';
-
+	import BarChart from './BarChart.svelte'; // Import the BarChart component
+	
 	// Declare the selectedItem prop
 	export let selectedItem;
+
+	// Time range for the bar chart
+	let timeRange: 'hour' | 'day' | 'week' | 'year' = 'day';
+
+	// Transform contributions data for the bar chart
+	$: chartData = selectedItem ? selectedItem.contributions : [];
 
 	// Reactive transformation of the selected item's data
 	$: transformedData = selectedItem
@@ -22,6 +29,18 @@
 			<p>No item selected.</p>
 		{/if}
 	</div>
+</div>
+
+<!-- Add the bar chart at the bottom -->
+<div class="bar-chart-container">
+	<h3>Contribution Bar Chart</h3>
+	<select bind:value={timeRange}>
+		<option value="hour">Per Hour</option>
+		<option value="day">Per Day</option>
+		<option value="week">Per Week</option>
+		<option value="year">Per Year</option>
+	</select>
+	<BarChart {chartData} {timeRange} />
 </div>
 
 <style>
@@ -46,5 +65,26 @@
 			width: 100%; /* Take full width on mobile */
 			min-width: auto; /* Allow it to shrink */
 		}
+	}
+
+	.bar-chart-container {
+		margin-top: 20px;
+		background-color: #2c3e50;
+		padding: 16px;
+		border-radius: 6px;
+	}
+
+	h3 {
+		color: white;
+		margin-bottom: 10px;
+	}
+
+	select {
+		margin-bottom: 10px;
+		padding: 5px;
+		border-radius: 5px;
+		background-color: #1c293d;
+		color: white;
+		border: 1px solid #ccc;
 	}
 </style>

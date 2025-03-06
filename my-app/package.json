@@ -38,6 +38,7 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
-		"activity-calendar-widget": "^0.0.18"
+		"activity-calendar-widget": "^0.0.18",
+		"chart.js": "^4.4.8"
 	}
 }
