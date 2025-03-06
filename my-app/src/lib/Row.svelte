@@ -6,7 +6,7 @@
 	export let title: string;
 	export let selectedColor: string;
 	export let contributions: any;
-	export let latestContributionTimestamp: string; // Add this prop
+	export let latestContributionTimestamp: string;
 
 	let contentTime = `Never`;
 
@@ -19,15 +19,15 @@
 		contributions.push(todayContribution);
 	}
 
-	export function updateTime() {
+	// Update the time display
+	function updateTime() {
 		if (!latestContributionTimestamp) {
-			contentTime = `Never`; // Display "Never" if no contributions have been made
+			contentTime = `Never`;
 			return;
 		}
 
 		const now = new Date();
-
-		const reference = new Date(latestContributionTimestamp); // Use the latest contribution timestamp
+		const reference = new Date(latestContributionTimestamp);
 
 		const diffInSeconds = Math.floor((now.getTime() - reference.getTime()) / 1000);
 
@@ -39,7 +39,6 @@
 		const days = Math.floor(diffInSeconds / (3600 * 24));
 		const hours = Math.floor((diffInSeconds % (3600 * 24)) / 3600);
 		const minutes = Math.floor((diffInSeconds % 3600) / 60);
-		// const seconds = diffInSeconds % 60
 
 		// Format the time difference
 		if (diffInSeconds < 60) {
@@ -67,19 +66,19 @@
 	// Update the count for today's contribution
 	function addBtnHandleClick() {
 		todayContribution.count++;
-		todayContribution.timestamp = new Date().toISOString(); // Update today's timestamp
-		latestContributionTimestamp = todayContribution.timestamp; // Update the latest contribution timestamp
-		dispatch('update'); // Emit an event
-		updateTime(); // Update the time display
+		todayContribution.timestamp = new Date().toISOString();
+		latestContributionTimestamp = todayContribution.timestamp;
+		dispatch('update');
+		updateTime();
 	}
 
 	function removeBtnHandleClick() {
 		if (todayContribution.count > 0) {
 			todayContribution.count--;
-			todayContribution.timestamp = new Date().toISOString(); // Update today's timestamp
-			latestContributionTimestamp = todayContribution.timestamp; // Update the latest contribution timestamp
-			dispatch('update'); // Emit an event
-			updateTime(); // Update the time display
+			todayContribution.timestamp = new Date().toISOString();
+			latestContributionTimestamp = todayContribution.timestamp;
+			dispatch('update');
+			updateTime();
 		}
 	}
 

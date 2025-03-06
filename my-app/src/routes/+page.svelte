@@ -112,15 +112,22 @@
 		}
 	}
 
+	// Function to handle updates from Row
 	function handleUpdate(itemIndex: number) {
-		items[itemIndex].contributions = [...items[itemIndex].contributions]; // Trigger reactivity
+		items[itemIndex].contributions = [...items[itemIndex].contributions];
 		items[itemIndex].latestContributionTimestamp = items[itemIndex].contributions.reduce(
 			(latest: string, c: any) => {
 				return c.timestamp > latest ? c.timestamp : latest;
 			},
 			''
 		);
-		items = items;
+		items = items; // Trigger reactivity
+	}
+
+	// Function to remove an item
+	function removeItem(itemIndex: number) {
+		items.splice(itemIndex, 1); // Remove the item
+		items = items; // Trigger reactivity
 	}
 </script>
 
@@ -147,6 +154,7 @@
 				latestContributionTimestamp={item.latestContributionTimestamp}
 				selectedColor={item.color}
 			></Row>
+			<button on:click={() => removeItem(index)}>Remove Item</button>
 		{/each}
 	</div>
 	<button
