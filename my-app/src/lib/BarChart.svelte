@@ -1,14 +1,19 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import Chart from 'chart.js/auto';
 
 	export let data: { date: string; count: number }[];
-	export let timeRange: 'hour' | 'day' | 'week' | 'year'; // Time range for the chart
+	export let timeRange: 'hour' | 'day' | 'week' | 'year';
 
 	let chart: Chart;
 	let canvas: HTMLCanvasElement;
 
-	onMount(() => {
+	// Function to create or update the chart
+	function createOrUpdateChart() {
+		if (chart) {
+			chart.destroy(); // Destroy the existing chart
+		}
+
 		// Group data based on the selected time range
 		const groupedData = groupDataByTimeRange(data, timeRange);
 
@@ -46,9 +51,23 @@
 				}
 			}
 		});
+	}
 
-		// Cleanup on component destruction
-		return () => chart.destroy();
+	// Create the chart when the component mounts
+	onMount(() => {
+		createOrUpdateChart();
+	});
+
+	// Update the chart when data or timeRange changes
+	$: {
+		createOrUpdateChart();
+	}
+
+	// Cleanup on component destruction
+	onDestroy(() => {
+		if (chart) {
+			chart.destroy();
+		}
 	});
 
 	// Function to group data by time range

@@ -2,14 +2,14 @@
 	// @ts-nocheck
 	import ActivityCalendarWidget from 'activity-calendar-widget/svelte';
 	import BarChart from './BarChart.svelte'; // Import the BarChart component
-	
+
 	// Declare the selectedItem prop
 	export let selectedItem;
 
 	// Time range for the bar chart
-	let timeRange: 'hour' | 'day' | 'week' | 'year';
+	let timeRange: 'hour' | 'day' | 'week' | 'year' = 'day';
 
-	// Transform contributions data for the bar chart
+	// Reactive statement to update chart data when selectedItem changes
 	$: data = selectedItem ? selectedItem.contributions : [];
 
 	// Reactive transformation of the selected item's data
