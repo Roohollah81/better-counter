@@ -8,24 +8,21 @@
 	let chart: Chart;
 	let canvas: HTMLCanvasElement;
 
-	// Function to create or update the chart
 	function createOrUpdateChart() {
 		if (chart) {
-			chart.destroy(); // Destroy the existing chart
+			chart.destroy();
 		}
 
-		// Group data based on the selected time range
 		const groupedData = groupDataByTimeRange(data, timeRange);
 
-		// Create the bar chart
 		chart = new Chart(canvas, {
 			type: 'bar',
 			data: {
-				labels: groupedData.labels, // Dates or time ranges on the x-axis
+				labels: groupedData.labels,
 				datasets: [
 					{
 						label: 'Contributions',
-						data: groupedData.counts, // Counts on the y-axis
+						data: groupedData.counts,
 						backgroundColor: 'rgba(75, 192, 192, 0.2)',
 						borderColor: 'rgba(75, 192, 192, 1)',
 						borderWidth: 1
@@ -53,24 +50,20 @@
 		});
 	}
 
-	// Create the chart when the component mounts
 	onMount(() => {
 		createOrUpdateChart();
 	});
 
-	// Update the chart when data or timeRange changes
 	$: {
 		createOrUpdateChart();
 	}
 
-	// Cleanup on component destruction
 	onDestroy(() => {
 		if (chart) {
 			chart.destroy();
 		}
 	});
 
-	// Function to group data by time range
 	function groupDataByTimeRange(
 		data: { date: string; count: number }[],
 		range: 'hour' | 'day' | 'week' | 'year'
@@ -83,19 +76,19 @@
 
 			switch (range) {
 				case 'hour':
-					key = date.toISOString().slice(0, 13); // Group by hour (YYYY-MM-DDTHH)
+					key = date.toISOString().slice(0, 13);
 					break;
 				case 'day':
-					key = date.toISOString().slice(0, 10); // Group by day (YYYY-MM-DD)
+					key = date.toISOString().slice(0, 10);
 					break;
 				case 'week':
-					key = getWeekKey(date); // Group by week (YYYY-WW)
+					key = getWeekKey(date);
 					break;
 				case 'year':
-					key = date.toISOString().slice(0, 4); // Group by year (YYYY)
+					key = date.toISOString().slice(0, 4);
 					break;
 				default:
-					key = date.toISOString().slice(0, 10); // Default to day
+					key = date.toISOString().slice(0, 10);
 			}
 
 			grouped[key] = (grouped[key] || 0) + entry.count;
@@ -107,11 +100,10 @@
 		};
 	}
 
-	// Function to get the week key (YYYY-WW)
 	function getWeekKey(date: Date): string {
 		const startOfWeek = new Date(date);
 		startOfWeek.setHours(0, 0, 0, 0);
-		startOfWeek.setDate(date.getDate() - date.getDay()); // Start of the week (Sunday)
+		startOfWeek.setDate(date.getDate() - date.getDay());
 		return `${startOfWeek.getFullYear()}-W${String(Math.ceil((startOfWeek.getDate() + 1) / 7)).padStart(2, '0')}`;
 	}
 </script>
