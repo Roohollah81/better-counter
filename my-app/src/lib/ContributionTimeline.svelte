@@ -1,18 +1,14 @@
 <script lang="ts">
 	// @ts-nocheck
 	import ActivityCalendarWidget from 'activity-calendar-widget/svelte';
-	import BarChart from './BarChart.svelte'; // Import the BarChart component
+	import BarChart from './BarChart.svelte';
 
-	// Declare the selectedItem prop
 	export let selectedItem;
 
-	// Time range for the bar chart
 	let timeRange: 'hour' | 'day' | 'week' | 'year' = 'day';
 
-	// Reactive statement to update chart data when selectedItem changes
 	$: data = selectedItem ? selectedItem.contributions : [];
 
-	// Reactive transformation of the selected item's data
 	$: transformedData = selectedItem
 		? selectedItem.contributions.map((contribution) => ({
 				date: contribution.date,
@@ -31,7 +27,6 @@
 	</div>
 </div>
 
-<!-- Add the bar chart at the bottom -->
 <div class="bar-chart-container">
 	<h3>Contribution Bar Chart</h3>
 	<select bind:value={timeRange}>
@@ -44,26 +39,24 @@
 </div>
 
 <style>
-	/* Base styles */
 	.timeline-container {
 		overflow-y: hidden;
 		background-color: #1c293d;
 	}
 	.timeline {
-		width: fit-content; /* Allow the timeline to grow as needed */
-		min-width: 100%; /* Ensure it takes at least the full width of the container */
-		height: 100%; /* Fill the container height */
+		width: fit-content;
+		min-width: 100%;
+		height: 100%;
 	}
-	/* Mobile styles */
+
 	@media (max-width: 768px) {
 		.timeline-container {
-			padding: 8px; /* Reduce padding for smaller screens */
+			padding: 8px;
 		}
 
-		/* Adjust the timeline for mobile */
 		.timeline {
-			width: 100%; /* Take full width on mobile */
-			min-width: auto; /* Allow it to shrink */
+			width: 100%;
+			min-width: auto;
 		}
 	}
 
