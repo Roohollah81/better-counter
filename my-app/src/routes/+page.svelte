@@ -278,7 +278,6 @@
 		position: absolute;
 		animation: all 0.2s;
 		background-color: #1e1e1e;
-		border-top: 4px solid #1c293d;
 		overflow-x: auto; /* Enable horizontal scrolling if needed */
 	}
 	.sidebar-title {
