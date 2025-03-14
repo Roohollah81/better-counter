@@ -393,7 +393,6 @@
 	}
 	.select-category {
 		height: 50px;
-		width: 100px;
-		background-color: red;
+		border: 2px solid red;
 	}
 </style>
