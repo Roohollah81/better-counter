@@ -2,7 +2,7 @@
 
 # use tauri for mobile using
 
-# when clicked on item, open sidebar as full screen, aceess in separated tabs for graph and contribution time line
+# when clicked on item, open sidebar as full screen, aceess in separated tabs for graph and contribution time line when user clicked on button with name like timeline, contribution timeline showup, when click on barchart, barchart showup, and ...
 
 # in larger screen like tablet, show app in left of page as mobile screen size and in right of page we can see each sidebar graph in phone size
 
