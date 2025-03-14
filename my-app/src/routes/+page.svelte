@@ -145,6 +145,7 @@
 				Chart
 			</label>
 		</div>
+		<div class="select-category"></div>
 		{#each items as item, index}
 			<Row
 				on:click={() => handleClickOnRowContent(item.title, item)}
@@ -389,5 +390,10 @@
 		background-color: #1e1e1e;
 		position: absolute;
 		overflow-x: hidden; /* Prevent horizontal overflow */
+	}
+	.select-category {
+		height: 50px;
+		width: 100px;
+		background-color: red;
 	}
 </style>
