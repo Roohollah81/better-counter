@@ -270,12 +270,12 @@
 		flex-direction: column;
 	}
 	.sidebar {
-		top: 50px;
+		top: 116px;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		color: white;
-		position: fixed;
+		position: absolute;
 		animation: all 0.2s;
 		background-color: #1e1e1e;
 		border-top: 4px solid #1c293d;
