@@ -12,6 +12,7 @@
 	let showEmptyFieldWarningMessage = false;
 	let selectedColor: string = 'Gray';
 
+
 	const options = [
 		{ value: 'Hourly', label: 'Hourly' },
 		{ value: 'Daily', label: 'Daily' },
@@ -145,7 +146,14 @@
 				Chart
 			</label>
 		</div>
-		<div class="select-category"></div>
+		<div class="select-category">
+			<button class="category-item">
+				<h4>Time Line</h4>
+			</button>
+			<button class="category-item">
+				<h4>Bar Chart</h4>
+			</button>
+		</div>
 		{#each items as item, index}
 			<Row
 				on:click={() => handleClickOnRowContent(item.title, item)}
@@ -392,6 +400,12 @@
 	}
 	.select-category {
 		height: 50px;
-		border: 2px solid red;
+		border: 2px solid #31c1ab;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	.category-item {
+		padding: 0px 0px 0px 0px;
 	}
 </style>
