@@ -6,7 +6,6 @@
 
 # in larger screen like tablet, show app in left of page as mobile screen size and in right of page we can see each sidebar graph in phone size
 
-
 ########################## TABLET ###########################
 #   main screen  #   contribution timeline   #   barchart   #
 #                #                           #              #
