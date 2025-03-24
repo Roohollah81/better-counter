@@ -22,3 +22,4 @@
 # fix barchart attribute (per day, per hour, per week, per month)
 
 # placing the app on the market
+
