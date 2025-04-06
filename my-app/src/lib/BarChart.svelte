@@ -3,7 +3,7 @@
 	import Chart from 'chart.js/auto';
 
 	export let data: { date: string; count: number }[];
-	export let timeRange: 'hour' | 'day' | 'week' | 'year';
+	let timeRange: 'hour' | 'day' | 'week' | 'year';
 
 	let chart: Chart;
 	let canvas: HTMLCanvasElement;
@@ -110,9 +110,38 @@
 
 <canvas bind:this={canvas}></canvas>
 
+<div class="bar-chart-container">
+	<h3>Contribution Bar Chart</h3>
+	<select bind:value={timeRange}>
+		<option value="hour">Per Hour</option>
+		<option value="day">Per Day</option>
+		<option value="week">Per Week</option>
+		<option value="year">Per Year</option>
+	</select>
+</div>
+
 <style>
 	canvas {
 		width: 100%;
 		height: 300px;
+	}
+	.bar-chart-container {
+		margin-top: 20px;
+		background-color: #2c3e50;
+		padding: 16px;
+		border-radius: 6px;
+	}
+	h3 {
+		color: white;
+		margin-bottom: 10px;
+	}
+
+	select {
+		margin-bottom: 10px;
+		padding: 5px;
+		border-radius: 5px;
+		background-color: #1c293d;
+		color: white;
+		border: 1px solid #ccc;
 	}
 </style>

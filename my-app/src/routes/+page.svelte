@@ -3,6 +3,7 @@
 	import ColorCircle from '$lib/ColorCircle.svelte';
 	import { fly } from 'svelte/transition';
 	import ContributionTimeline from '$lib/ContributionTimeline.svelte';
+	import BarChart from '$lib/BarChart.svelte';
 	let selectedTitle = '';
 	let showSidebar = false;
 	let showTimeLine = false;
@@ -68,12 +69,23 @@
 		}
 	}
 
-	let selectedItem: {};
+	let selectedItem: any;
 	function handleClickOnRowContent(title: string, item: any) {
 		selectedTitle = title;
 		showSidebar = true;
+		showTimeLine = false;
+		showBarchart = false;
 		selectedItem = item;
 	}
+
+	$: data = selectedItem ? selectedItem.contributions : [];
+
+	$: transformedData = selectedItem
+		? selectedItem.contributions.map((contribution: { date: any; count: any }) => ({
+				date: contribution.date,
+				activities: Array(contribution.count).fill({})
+			}))
+		: [];
 
 	const circles = [
 		{ color: 'Gray' },
@@ -176,13 +188,30 @@
 		<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
 			<!-- svelte-ignore a11y_no_redundant_roles -->
 			<div class="select-category">
-				<button class="button-49" role="button">Time Line</button>
-				<button class="button-49" role="button">Bar Chart</button>
+				<button
+					class="button-49"
+					role="button"
+					on:click={() => {
+						showTimeLine = true;
+						showBarchart = false;
+					}}>Time Line</button
+				>
+				<button
+					class="button-49"
+					role="button"
+					on:click={() => {
+						showBarchart = true;
+						showTimeLine = false;
+					}}>Bar Chart</button
+				>
 			</div>
 			<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
-			<ContributionTimeline {selectedItem} />
-			{#if showBarchart}{/if}
-			{#if showTimeLine}{/if}
+			{#if showBarchart}
+				<BarChart {data} />
+			{/if}
+			{#if showTimeLine}
+				<ContributionTimeline {transformedData} />
+			{/if}
 		</div>
 	{/if}
 	{#if showAddItem}
