@@ -5,13 +5,14 @@
 	import ContributionTimeline from '$lib/ContributionTimeline.svelte';
 	let selectedTitle = '';
 	let showSidebar = false;
+	let showTimeLine = false;
+	let showBarchart = false;
 	let showAddItem = false;
 	let goalCount = 0;
 	let newItemName = '';
 	let newItemLifeTime = 'Lifetime';
 	let showEmptyFieldWarningMessage = false;
 	let selectedColor: string = 'Gray';
-
 
 	const options = [
 		{ value: 'Hourly', label: 'Hourly' },
@@ -146,14 +147,6 @@
 				Chart
 			</label>
 		</div>
-		<div class="select-category">
-			<button class="category-item">
-				<h4>Time Line</h4>
-			</button>
-			<button class="category-item">
-				<h4>Bar Chart</h4>
-			</button>
-		</div>
 		{#each items as item, index}
 			<Row
 				on:click={() => handleClickOnRowContent(item.title, item)}
@@ -181,8 +174,18 @@
 	</button>
 	{#if showSidebar}
 		<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
+			<div class="select-category">
+				<button class="category-item">
+					<h4>Time Line</h4>
+				</button>
+				<button class="category-item">
+					<h4>Bar Chart</h4>
+				</button>
+			</div>
 			<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
 			<ContributionTimeline {selectedItem} />
+			{#if showBarchart}{/if}
+			{#if showTimeLine}{/if}
 		</div>
 	{/if}
 	{#if showAddItem}
@@ -278,14 +281,14 @@
 		flex-direction: column;
 	}
 	.sidebar {
-		top: 116px;
+		top: 50px;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		color: white;
 		position: absolute;
 		animation: all 0.2s;
-		background-color: #1e1e1e;
+		background-color: #3d3466;
 		overflow-x: auto; /* Enable horizontal scrolling if needed */
 	}
 	.sidebar-title {
@@ -394,13 +397,14 @@
 	.body {
 		width: 100%;
 		height: 100%;
-		background-color: #1e1e1e;
+		background-color: #307872;
 		position: absolute;
 		overflow-x: hidden; /* Prevent horizontal overflow */
 	}
 	.select-category {
 		height: 50px;
-		border: 2px solid #31c1ab;
+		border: 2px solid black;
+		background-color: #31c1ab;
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
