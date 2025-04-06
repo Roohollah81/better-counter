@@ -290,6 +290,7 @@
 	}
 	.sidebar-title {
 		margin-left: 10px;
+		padding-top: 10px;
 	}
 	.add-content {
 		position: fixed;
@@ -402,6 +403,10 @@
 		display: flex;
 		justify-content: space-around;
 		cursor: pointer;
+		top: 10px;
+		position: relative;
+		border-bottom: 1px solid;
+		padding-bottom: 10px;
 	}
 	/* CSS */
 	.button-49,
