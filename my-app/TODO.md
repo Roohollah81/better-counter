@@ -22,6 +22,8 @@ change in panel of change details that exists in full screen sidebar panel
 
 - [ ] placing the app on the market
 
+- [ ] add edite icon in fullscreen page
+
 # todo
 
 - [ ]
