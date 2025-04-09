@@ -24,7 +24,14 @@
 # placing the app on the market
 
 
+# backlog
 
+- [ ] 
+- [ ]
 
+# todo
 
+- [ ]
+
+# done
 
