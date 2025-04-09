@@ -212,6 +212,19 @@
 			{#if showTimeLine}
 				<ContributionTimeline {transformedData} />
 			{/if}
+			<button
+				class="add-content"
+				on:click={() => {
+					showEmptyFieldWarningMessage = false;
+					showAddItem = true;
+					goalCount = 0;
+					newItemName = '';
+					newItemLifeTime = 'Lifetime';
+					selectedColor = 'Gray';
+				}}
+			>
+				<span class="material-symbols-outlined"> add </span>
+			</button>
 		</div>
 	{/if}
 	{#if showAddItem}
