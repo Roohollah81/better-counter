@@ -172,7 +172,7 @@
 		{/each}
 	</div>
 	<button
-		class="add-content"
+		class="add-edite-content"
 		on:click={() => {
 			showEmptyFieldWarningMessage = false;
 			showAddItem = true;
@@ -213,7 +213,7 @@
 				<ContributionTimeline {transformedData} />
 			{/if}
 			<button
-				class="add-content"
+				class="add-edite-content"
 				on:click={() => {
 					showEmptyFieldWarningMessage = false;
 					showAddItem = true;
@@ -223,7 +223,7 @@
 					selectedColor = 'Gray';
 				}}
 			>
-				<span class="material-symbols-outlined"> add </span>
+				<span class="material-symbols-outlined"> edit </span>
 			</button>
 		</div>
 	{/if}
@@ -334,7 +334,7 @@
 		margin-left: 10px;
 		padding-top: 10px;
 	}
-	.add-content {
+	.add-edite-content {
 		position: fixed;
 		bottom: 20px;
 		right: 20px;
