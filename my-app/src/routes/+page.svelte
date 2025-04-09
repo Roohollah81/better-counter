@@ -156,7 +156,7 @@
 			<h3 class="head-title">Better Counter</h3>
 			<label class="show-sidebar-checkbox">
 				<input type="checkbox" bind:checked={showSidebar} />
-				Chart
+				Panel
 			</label>
 		</div>
 		{#each items as item, index}
