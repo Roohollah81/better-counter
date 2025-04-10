@@ -168,7 +168,6 @@
 				latestContributionTimestamp={item.latestContributionTimestamp}
 				selectedColor={item.color}
 			></Row>
-			<button on:click={() => removeItem(index)}>Remove Item</button>
 		{/each}
 	</div>
 	<button
