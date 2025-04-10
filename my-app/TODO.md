@@ -15,16 +15,14 @@
 
 - [ ]  in larger screen like tablet, show app in left of page as mobile screen size and in right of page we can see each sidebar graph in phone size
 
-- [ ] user can change details of item when click on item and after sidebar screen showup, user can apply 
-change in panel of change details that exists in full screen sidebar panel
-
 - [ ] fix barchart attribute (per day, per hour, per week, per month)
 
 - [ ] placing the app on the market
 
 # todo
 
-- [ ]
+- [ ] user can change details of item when click on item and after sidebar screen showup, user can apply 
+change in panel of change details that exists in full screen sidebar panel
 
 # done
 
