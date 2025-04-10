@@ -1,11 +1,9 @@
 <script lang="ts">
-	import AddNewItemPanel from '../lib/AddNewItemPanel.svelte';
-	import EditItemPanel from '../lib/EditItemPanel.svelte';
 	import Row from '$lib/Row.svelte';
 	import ColorCircle from '$lib/ColorCircle.svelte';
+	import { fly } from 'svelte/transition';
 	import ContributionTimeline from '$lib/ContributionTimeline.svelte';
 	import BarChart from '$lib/BarChart.svelte';
-	import { fly } from 'svelte/transition';
 	let selectedTitle = '';
 	let showSidebar = false;
 	let showTimeLine = false;
@@ -147,92 +145,70 @@
 	}
 </script>
 
-<link
-	rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-/>
-
-<div class="body">
-	<div class="rows">
-		<div class="head">
-			<h3 class="head-title">Better Counter</h3>
-			<label class="show-sidebar-checkbox">
-				<input type="checkbox" bind:checked={showSidebar} />
-				Panel
-			</label>
-		</div>
-		{#each items as item, index}
-			<Row
-				on:click={() => handleClickOnRowContent(item.title, item)}
-				on:update={() => handleUpdate(index)}
-				title={item.title}
-				contributions={item.contributions}
-				latestContributionTimestamp={item.latestContributionTimestamp}
-				selectedColor={item.color}
-			></Row>
-		{/each}
-	</div>
-	<button
-		class="add-edite-content"
-		on:click={() => {
-			showEmptyFieldWarningMessage = false;
-			showAddItem = true;
-			goalCount = 0;
-			newItemName = '';
-			newItemLifeTime = 'Lifetime';
-			selectedColor = 'Gray';
-		}}
-	>
-		<span class="material-symbols-outlined"> add </span>
-	</button>
-	{#if showSidebar}
-		<div class="sidebar" transition:fly={{ y: 200, duration: 200 }}>
-			<!-- svelte-ignore a11y_no_redundant_roles -->
-			<div class="select-category">
-				<button
-					class="button-49"
-					role="button"
-					on:click={() => {
-						showTimeLine = true;
-						showBarchart = false;
-					}}>Time Line</button
-				>
-				<button
-					class="button-49"
-					role="button"
-					on:click={() => {
-						showBarchart = true;
-						showTimeLine = false;
-					}}>Bar Chart</button
-				>
+<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
+			<h3 class="menu-title" style="bold">Add counter</h3>
+			<input
+				class="select-item-name"
+				type="text"
+				bind:value={newItemName}
+				placeholder={showEmptyFieldWarningMessage ? 'Give the counter a name' : 'Counter name'}
+			/>
+			<div class="life-time-and-goal">
+				<select class="select-life-time" bind:value={newItemLifeTime}>
+					{#each options as option}
+						<option value={option.value}>{option.label} </option>
+					{/each}
+				</select>
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div class="select-goal">
+					<span
+						class="material-symbols-outlined"
+						on:click={() => {
+							decreaseGoal();
+						}}
+					>
+						remove
+					</span>
+					<div class="goal-count">
+						{goalCount}
+					</div>
+					<span
+						class="material-symbols-outlined"
+						on:click={() => {
+							increaseGoal();
+						}}
+					>
+						add
+					</span>
+				</div>
 			</div>
-			<h3 class="sidebar-title" style="bold">{selectedTitle}</h3>
-			{#if showBarchart}
-				<BarChart {data} />
-			{/if}
-			{#if showTimeLine}
-				<ContributionTimeline {transformedData} />
-			{/if}
-			<button
-				class="add-edite-content"
-				on:click={() => {
-					showEmptyFieldWarningMessage = false;
-					showAddItem = true;
-					goalCount = 0;
-					newItemName = '';
-					newItemLifeTime = 'Lifetime';
-					selectedColor = 'Gray';
-				}}
-			>
-				<span class="material-symbols-outlined"> edit </span>
-			</button>
+			<div class="select-color">
+				{#each circles as circle}
+					<ColorCircle color={circle.color} on:click={() => handleColorSelection(circle.color)} />
+				{/each}
+			</div>
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<div class="save-cancel">
+				<div
+					class="cancel"
+					on:click={() => {
+						closeAddNewItemWindow();
+					}}
+				>
+					Cancel
+				</div>
+				<div
+					class="save"
+					on:click={() => {
+						addNewItem();
+					}}
+				>
+					Save
+				</div>
+			</div>
 		</div>
-	{/if}
-	{#if showAddItem}
-		<AddNewItemPanel></AddNewItemPanel>
-		<EditItemPanel></EditItemPanel>
-	{/if}
-</div>
 
 <style>
 	.head {
@@ -492,3 +468,4 @@
 		}
 	}
 </style>
+
