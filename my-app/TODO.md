@@ -1,19 +1,18 @@
-########################## TABLET ###########################
-#   main screen  #   contribution timeline   #   barchart   #
-#                #                           #              #
-#                #                           #              #
-#                #                           #              #
-#                #                           #              #
-#                #                           #              #
-#                #                           #              #
-#                #                           #              #
-#############################################################
-
 # backlog
 
 - [ ]  use tauri for mobile using
 
 - [ ]  in larger screen like tablet, show app in left of page as mobile screen size and in right of page we can see each sidebar graph in phone size
+    ########################## TABLET ###########################
+    #   main screen  #   contribution timeline   #   barchart   #
+    #                #                           #              #
+    #                #                           #              #
+    #                #                           #              #
+    #                #                           #              #
+    #                #                           #              #
+    #                #                           #              #
+    #                #                           #              #
+    #############################################################
 
 - [ ] placing the app on the market
 
