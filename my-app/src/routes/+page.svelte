@@ -286,8 +286,8 @@
 		font-size: 0px;
 	}
 	.body {
-		width: 100%;
-		height: 100%;
+		width: 295px;
+		height: 650px;
 		background-color: #307872;
 		position: absolute;
 		overflow-x: hidden; /* Prevent horizontal overflow */
