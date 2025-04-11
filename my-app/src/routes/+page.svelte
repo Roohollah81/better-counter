@@ -286,10 +286,14 @@
 		font-size: 0px;
 	}
 	.body {
-		width: 295px;
-		height: 650px;
+		width: 375px;
+		height: 667px;
+		margin: 20px auto;
+		border: 1px solid #ccc;
+		overflow: auto;
+		position: relative;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		background-color: #307872;
-		position: absolute;
 		overflow-x: hidden; /* Prevent horizontal overflow */
 	}
 	.select-category {
