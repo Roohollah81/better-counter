@@ -274,7 +274,7 @@
 		padding-top: 10px;
 	}
 	.add-edite-content {
-		position: fixed;
+		position: absolute;
 		bottom: 20px;
 		right: 20px;
 		padding: 20px 20px;
