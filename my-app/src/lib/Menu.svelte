@@ -40,6 +40,8 @@
 </script>
 
 {#if showAddItem}
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
 		<h3 class="menu-title" style="bold">Add counter</h3>
 		<input
@@ -95,6 +97,7 @@
 		align-content: center;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		z-index: 1000;
 	}
 	.menu-title {
 		margin: 15px 0px 0px 10px;
