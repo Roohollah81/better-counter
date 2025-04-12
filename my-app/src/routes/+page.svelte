@@ -1,8 +1,6 @@
 <script lang="ts">
-	import AddNewItemPanel from '../lib/AddNewItemPanel.svelte';
-	import EditItemPanel from '../lib/EditItemPanel.svelte';
+	import Menu from '../lib/Menu.svelte';
 	import Row from '$lib/Row.svelte';
-	import ColorCircle from '$lib/ColorCircle.svelte';
 	import ContributionTimeline from '$lib/ContributionTimeline.svelte';
 	import BarChart from '$lib/BarChart.svelte';
 	import { fly } from 'svelte/transition';
@@ -16,19 +14,6 @@
 	let newItemLifeTime = 'Lifetime';
 	let showEmptyFieldWarningMessage = false;
 	let selectedColor: string = 'Gray';
-
-	const options = [
-		{ value: 'Hourly', label: 'Hourly' },
-		{ value: 'Daily', label: 'Daily' },
-		{ value: 'Weekly', label: 'Weekly' },
-		{ value: 'Monthly', label: 'Monthly' },
-		{ value: 'Yearly', label: 'Yearly' },
-		{ value: 'Lifetime', label: 'Lifetime' }
-	];
-
-	function handleColorSelection(color: string) {
-		selectedColor = color;
-	}
 
 	let items: any[] = [];
 	if (typeof window !== 'undefined') {
@@ -88,17 +73,6 @@
 				activities: Array(contribution.count).fill({})
 			}))
 		: [];
-
-	const circles = [
-		{ color: 'Gray' },
-		{ color: 'Blue' },
-		{ color: 'Purple' },
-		{ color: 'Brown' },
-		{ color: 'Indigo' },
-		{ color: 'Orange' },
-		{ color: 'Pink' },
-		{ color: 'Green' }
-	];
 
 	function addNewItem() {
 		if (!newItemName) {
@@ -228,10 +202,18 @@
 			</button>
 		</div>
 	{/if}
-	{#if showAddItem}
-		<AddNewItemPanel></AddNewItemPanel>
-		<EditItemPanel></EditItemPanel>
-	{/if}
+	<Menu
+		bind:showAddItem
+		bind:showEmptyFieldWarningMessage
+		bind:goalCount
+		bind:newItemName
+		bind:newItemLifeTime
+		bind:selectedColor
+		on:close={closeAddNewItemWindow}
+		on:save={addNewItem}
+		on:increaseGoal={increaseGoal}
+		on:decreaseGoal={decreaseGoal}
+	/>
 </div>
 
 <style>
