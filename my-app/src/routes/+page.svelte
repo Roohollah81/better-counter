@@ -214,6 +214,13 @@
 		on:increaseGoal={increaseGoal}
 		on:decreaseGoal={decreaseGoal}
 	/>
+	<EditPanel
+		bind:showEditPanel
+		bind:selectedItem
+		bind:selectedColor
+		on:save={updateItem}
+		on:delete={deleteItem}
+	/>
 </div>
 
 <style>
