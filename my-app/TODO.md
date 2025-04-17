@@ -30,3 +30,4 @@ change in panel of change details that exists in full screen sidebar panel
 - [x] remove "remove item" in bottom of each item
 
 - [x] when clicked on item, open sidebar as full screen, aceess in separated tabs for graph and contribution time line when user clicked on button with name like timeline, contribution timeline showup, when click on barchart, barchart showup, and ...
+
