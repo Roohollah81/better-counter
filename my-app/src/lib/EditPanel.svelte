@@ -2,7 +2,8 @@
 <script lang="ts">
 	import ColorCircle from '$lib/ColorCircle.svelte';
 	import { fly } from 'svelte/transition';
-
+	import { createEventDispatcher } from 'svelte';
+	
 	export let showEditPanel: boolean;
 	export let selectedItem: any;
 	export let selectedColor: string;

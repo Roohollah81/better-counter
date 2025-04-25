@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Menu from '../lib/Menu.svelte';
+	import EditPanel from '$lib/EditPanel.svelte';
 	import Row from '$lib/Row.svelte';
 	import ContributionTimeline from '$lib/ContributionTimeline.svelte';
 	import BarChart from '$lib/BarChart.svelte';
@@ -9,6 +10,7 @@
 	let showTimeLine = false;
 	let showBarchart = false;
 	let showAddItem = false;
+	let showEditPanel = false;
 	let goalCount = 0;
 	let newItemName = '';
 	let newItemLifeTime = 'Lifetime';
@@ -119,6 +121,43 @@
 		items.splice(itemIndex, 1); // Remove the item
 		items = items; // Trigger reactivity
 	}
+
+	function updateItem() {
+    // Find the index of the selected item
+    const index = items.findIndex(item => item.title === selectedItem.title);
+    
+    if (index !== -1) {
+      // Update the item with new values
+      items[index] = {
+        ...items[index],
+        title: selectedItem.title, // Updated from the edit panel
+        color: selectedColor       // Updated from the edit panel
+      };
+      
+      // Trigger reactivity
+      items = items;
+      
+      // Close the edit panel
+      showEditPanel = false;
+    }
+  }
+
+  function deleteItem() {
+    // Find the index of the selected item
+    const index = items.findIndex(item => item.title === selectedItem.title);
+    
+    if (index !== -1) {
+      // Remove the item
+      items.splice(index, 1);
+      
+      // Trigger reactivity
+      items = items;
+      
+      // Close the edit panel and sidebar
+      showEditPanel = false;
+      showSidebar = false;
+    }
+  }
 </script>
 
 <link
