@@ -261,7 +261,6 @@
 		on:delete={deleteItem}
 	/>
 </div>
-
 <style>
 	.head {
 		width: 100%;
