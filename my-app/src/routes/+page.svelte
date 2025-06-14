@@ -301,7 +301,7 @@
 		padding-top: 10px;
 	}
 	.add-edite-content {
-		position: absolute;
+		position: fixed;
 		bottom: 20px;
 		right: 20px;
 		padding: 20px 20px;
@@ -313,8 +313,8 @@
 		font-size: 0px;
 	}
 	.body {
-		width: 375px;
-		height: 667px;
+		width: auto;
+		height: auto;
 		margin: 20px auto;
 		border: 1px solid #ccc;
 		overflow: auto;
@@ -340,7 +340,7 @@
 		line-height: 50px;
 		font-size: 15px;
 		font-family: 'Bebas Neue', sans-serif;
-		background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+		background: linear-gradient(45deg, transparent 5%, #842a3f52 5%);
 		border: 0;
 		color: #fff;
 		letter-spacing: 1px;
