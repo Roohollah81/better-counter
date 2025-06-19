@@ -83,7 +83,7 @@
 <style>
 	.menu {
 		animation: all 0.2s;
-		background-color: #414141;
+		background-color: #095359;
 		width: 350px;
 		height: 300px;
 		position: fixed;
@@ -106,7 +106,7 @@
 		width: 304px;
 		height: 50px;
 		left: 14px;
-		background-color: #414141;
+		background-color: #095359;
 		border: 1px solid white;
 		border-radius: 5px;
 		padding-left: 15px;
@@ -117,7 +117,7 @@
 	.select-life-time {
 		width: 190px;
 		height: 50px;
-		background-color: #414141;
+		background-color: #095359;
 		border: 1px solid white;
 		border-radius: 5px;
 		padding-left: 15px;
