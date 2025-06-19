@@ -86,7 +86,7 @@
 		background-color: #414141;
 		width: 350px;
 		height: 300px;
-		position: absolute;
+		position: fixed;
 		color: rgb(226, 221, 221);
 		top: 50%;
 		left: 50%;
@@ -147,6 +147,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		cursor: pointer;
 	}
 	.save-cancel {
 		width: 321px;
