@@ -21,7 +21,7 @@
 - [ ] user can change details of item when click on item and after sidebar screen showup, user can apply 
 change in panel of change details that exists in full screen sidebar panel
 
-- [ ] fix barchart attribute (per day, per hour, per week, per month)
+- [x] fix barchart attribute (per day, per hour, per week, per month)
 
 # done
 
