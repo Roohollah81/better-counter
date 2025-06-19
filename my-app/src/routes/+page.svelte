@@ -65,6 +65,7 @@
 		showTimeLine = false;
 		showBarchart = false;
 		selectedItem = item;
+		showAddItem = false;
 	}
 
 	$: data = selectedItem ? selectedItem.contributions : [];
@@ -169,7 +170,14 @@
 	<div class="rows">
 		<div class="head">
 			<h3 class="head-title">Better Counter</h3>
-			<label class="show-sidebar-checkbox">
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+			<label
+				class="show-sidebar-checkbox"
+				on:click={() => {
+					showAddItem = false;
+				}}
+			>
 				<input type="checkbox" bind:checked={showSidebar} />
 				Panel
 			</label>
@@ -307,7 +315,7 @@
 		right: 20px;
 		padding: 20px 20px;
 		background-color: #e7e7e7;
-		color: #1e1e1e;	
+		color: #1e1e1e;
 		border: none;
 		border-radius: 20px;
 		cursor: pointer;
