@@ -33,7 +33,6 @@
 			{#each circles as circle}
 				<ColorCircle
 					color={circle.color}
-					active={circle.color === selectedColor}
 					on:click={() => (selectedColor = circle.color)}
 				/>
 			{/each}
