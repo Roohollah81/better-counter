@@ -16,6 +16,8 @@
 
 - [ ] placing the app on the market
 
+- [ ] handle lifetime and goal
+
 # todo
 
 - [ ] user can change details of item when click on item and after sidebar screen showup, user can apply 
