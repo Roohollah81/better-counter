@@ -73,9 +73,9 @@
 				<ColorCircle color={circle.color} on:click={() => handleColorSelection(circle.color)} />
 			{/each}
 		</div>
-		<div class="save-cancel">
-			<div class="cancel" on:click={() => dispatch('close')}>Cancel</div>
-			<div class="save" on:click={() => dispatch('save')}>Save</div>
+		<div class="save-cancel-section">
+			<div class="save-cancel-button" on:click={() => dispatch('close')}>Cancel</div>
+			<div class="save-cancel-button" on:click={() => dispatch('save')}>Save</div>
 		</div>
 	</div>
 {/if}
@@ -105,7 +105,6 @@
 	.select-item-name {
 		width: 304px;
 		height: 50px;
-		left: 14px;
 		background-color: #095359;
 		border: 1px solid white;
 		border-radius: 5px;
@@ -149,7 +148,7 @@
 		align-items: center;
 		cursor: pointer;
 	}
-	.save-cancel {
+	.save-cancel-section {
 		width: 321px;
 		height: 50px;
 		border-radius: 5px;
@@ -157,20 +156,14 @@
 		justify-content: flex-end;
 		margin-bottom: 10px;
 	}
-	.cancel {
+	.save-cancel-button {
 		width: 80px;
 		height: 50px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
-	}
-	.save {
-		width: 80px;
-		height: 50px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
+		border: 2px solid white;
+		border-radius: 5px;
 	}
 </style>
