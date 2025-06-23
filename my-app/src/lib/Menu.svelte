@@ -163,7 +163,7 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
-		border: 2px solid white;
+		/* border: 2px solid white; */
 		border-radius: 5px;
 	}
 </style>
