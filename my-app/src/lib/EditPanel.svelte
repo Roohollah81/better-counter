@@ -1,3 +1,4 @@
+<!-- svelte-ignore options_renamed_ssr_dom -->
 <!-- src/lib/EditPanel.svelte -->
 <script lang="ts">
 	import ColorCircle from '$lib/ColorCircle.svelte';

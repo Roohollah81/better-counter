@@ -4,12 +4,13 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
 
-	export let showAddItem: boolean;
+	export let showAddEditItem: boolean;
 	export let showEmptyFieldWarningMessage: boolean;
 	export let goalCount: number;
 	export let newItemName: string;
 	export let newItemLifeTime: string;
 	export let selectedColor: string;
+	export let func: string;
 
 	export const options = [
 		{ value: 'Hourly', label: 'Hourly' },
@@ -39,11 +40,11 @@
 	}
 </script>
 
-{#if showAddItem}
+{#if showAddEditItem}
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
-		<h3 class="menu-title" style="bold">Add counter</h3>
+		<h3 class="menu-title" style="bold">{func} counter</h3>
 		<input
 			class="select-item-name"
 			type="text"
@@ -74,6 +75,10 @@
 			{/each}
 		</div>
 		<div class="save-cancel-section">
+			{#if func == "Edit"}
+				<div class="save-cancel-button" style="color: red;" on:click={() => dispatch('delete')}>Delete</div>
+				<div class="save-cancel-button" style="color: red;" on:click={() => dispatch('reset')}>Reset</div>
+			{/if}
 			<div class="save-cancel-button" on:click={() => dispatch('close')}>Cancel</div>
 			<div class="save-cancel-button" on:click={() => dispatch('save')}>Save</div>
 		</div>

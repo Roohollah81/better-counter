@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Menu from '../lib/Menu.svelte';
-	import EditPanel from '$lib/EditPanel.svelte';
 	import Row from '$lib/Row.svelte';
 	import ContributionTimeline from '$lib/ContributionTimeline.svelte';
 	import BarChart from '$lib/BarChart.svelte';
@@ -9,15 +8,15 @@
 	let showSidebar = false;
 	let showTimeLine = false;
 	let showBarchart = false;
-	let showAddItem = false;
-	let showEditPanel = false;
+	let showAddEditItem = false;
 	let goalCount = 0;
 	let newItemName = '';
+	let func = '';
 	let newItemLifeTime = 'Lifetime';
 	let showEmptyFieldWarningMessage = false;
 	let selectedColor: string = 'Gray';
-
 	let items: any[] = [];
+
 	if (typeof window !== 'undefined') {
 		const savedItems = localStorage.getItem('items');
 		if (savedItems) {
@@ -65,7 +64,7 @@
 		showTimeLine = false;
 		showBarchart = false;
 		selectedItem = item;
-		showAddItem = false;
+		showAddEditItem = false;
 	}
 
 	$: data = selectedItem ? selectedItem.contributions : [];
@@ -81,7 +80,7 @@
 		if (!newItemName) {
 			showEmptyFieldWarningMessage = true;
 		} else {
-			showAddItem = false;
+			showAddEditItem = false;
 			let new_item = {
 				title: newItemName,
 				color: selectedColor,
@@ -92,7 +91,7 @@
 	}
 
 	function closeAddNewItemWindow() {
-		showAddItem = false;
+		showAddEditItem = false;
 	}
 
 	function increaseGoal() {
@@ -137,9 +136,6 @@
 
 			// Trigger reactivity
 			items = items;
-
-			// Close the edit panel
-			showEditPanel = false;
 		}
 	}
 
@@ -154,8 +150,7 @@
 			// Trigger reactivity
 			items = items;
 
-			// Close the edit panel and sidebar
-			showEditPanel = false;
+			// Close the sidebar
 			showSidebar = false;
 		}
 	}
@@ -175,7 +170,7 @@
 			<label
 				class="show-sidebar-checkbox"
 				on:click={() => {
-					showAddItem = false;
+					showAddEditItem = false;
 				}}
 			>
 				<input type="checkbox" bind:checked={showSidebar} />
@@ -197,11 +192,12 @@
 		class="add-edite-content"
 		on:click={() => {
 			showEmptyFieldWarningMessage = false;
-			showAddItem = true;
+			showAddEditItem = true;
 			goalCount = 0;
 			newItemName = '';
 			newItemLifeTime = 'Lifetime';
 			selectedColor = 'Gray';
+			func = "Add";
 		}}
 	>
 		<span class="material-symbols-outlined"> add </span>
@@ -238,11 +234,12 @@
 				class="add-edite-content"
 				on:click={() => {
 					showEmptyFieldWarningMessage = false;
-					showAddItem = true;
+					showAddEditItem = true;
 					goalCount = 0;
 					newItemName = '';
 					newItemLifeTime = 'Lifetime';
 					selectedColor = 'Gray';
+					func = "Edit"
 				}}
 			>
 				<span class="material-symbols-outlined"> edit </span>
@@ -250,23 +247,17 @@
 		</div>
 	{/if}
 	<Menu
-		bind:showAddItem
+		bind:showAddEditItem
 		bind:showEmptyFieldWarningMessage
 		bind:goalCount
 		bind:newItemName
 		bind:newItemLifeTime
 		bind:selectedColor
+		bind:func
 		on:close={closeAddNewItemWindow}
 		on:save={addNewItem}
 		on:increaseGoal={increaseGoal}
 		on:decreaseGoal={decreaseGoal}
-	/>
-	<EditPanel
-		bind:showEditPanel
-		bind:selectedItem
-		bind:selectedColor
-		on:save={updateItem}
-		on:delete={deleteItem}
 	/>
 </div>
 
