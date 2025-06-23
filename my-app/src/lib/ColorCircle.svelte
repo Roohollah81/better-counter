@@ -4,10 +4,9 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div
-	class="color-circle"
-	style="background-color: {color};"
-></div>
+<div>
+	<div class="color-circle" style="background-color: {color};" on:click></div>
+</div>
 
 <style>
 	.color-circle {
@@ -15,8 +14,7 @@
 		height: 35px;
 		border-radius: 50%;
 	}
-	.color-circle:focus-visible {
+	.color-circle:hover {
 		border: 1px solid rgb(255, 255, 255);
 	}
 </style>
-‍
