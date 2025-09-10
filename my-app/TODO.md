@@ -23,9 +23,15 @@
 - [ ] user can change details of item when click on item and after sidebar screen showup, user can apply 
 change in panel of change details that exists in full screen sidebar panel
 
-- [x] fix barchart attribute (per day, per hour, per week, per month)
+- [ ] update item detail
+
+- [ ] delete item
+
+- [ ] reset item counter
 
 # done
+
+- [x] fix barchart attribute (per day, per hour, per week, per month)
 
 - [x] add edite icon in fullscreen page
 
