@@ -8,7 +8,7 @@
 	let showSidebar = false;
 	let showTimeLine = false;
 	let showBarchart = false;
-	let showAddEditItem = false;
+	let showMenu = false;
 	let goalCount = 0;
 	let newItemName = '';
 	let func = '';
@@ -64,7 +64,7 @@
 		showTimeLine = false;
 		showBarchart = false;
 		selectedItem = item;
-		showAddEditItem = false;
+		showMenu = false;
 	}
 
 	$: data = selectedItem ? selectedItem.contributions : [];
@@ -77,21 +77,33 @@
 		: [];
 
 	function addNewItem() {
-		if (!newItemName) {
-			showEmptyFieldWarningMessage = true;
+		if (showSidebar) {
+			showMenu = false;
 		} else {
-			showAddEditItem = false;
-			let new_item = {
-				title: newItemName,
-				color: selectedColor,
-				contributions: [{ date: new Date().toISOString(), count: goalCount }]
-			};
-			items = [...items, new_item];
+			if (!newItemName) {
+				showEmptyFieldWarningMessage = true;
+			} else {
+				showMenu = false;
+				let new_item = {
+					title: newItemName,
+					color: selectedColor,
+					contributions: [{ date: new Date().toISOString(), count: goalCount }]
+				};
+				items = [...items, new_item];
+			}
 		}
 	}
 
+	function resetItem() {
+		console.log(goalCount);
+		goalCount = 0;
+		showMenu = false;
+		showSidebar = false;
+		console.log(goalCount);
+	}
+
 	function closeAddNewItemWindow() {
-		showAddEditItem = false;
+		showMenu = false;
 	}
 
 	function increaseGoal() {
@@ -152,6 +164,7 @@
 
 			// Close the sidebar
 			showSidebar = false;
+			showMenu = false;
 		}
 	}
 </script>
@@ -170,7 +183,7 @@
 			<label
 				class="show-sidebar-checkbox"
 				on:click={() => {
-					showAddEditItem = false;
+					showMenu = false;
 				}}
 			>
 				<input type="checkbox" bind:checked={showSidebar} />
@@ -192,12 +205,12 @@
 		class="add-edite-content"
 		on:click={() => {
 			showEmptyFieldWarningMessage = false;
-			showAddEditItem = true;
+			showMenu = true;
 			goalCount = 0;
 			newItemName = '';
 			newItemLifeTime = 'Lifetime';
 			selectedColor = 'Gray';
-			func = "Add";
+			func = 'Add';
 		}}
 	>
 		<span class="material-symbols-outlined"> add </span>
@@ -234,12 +247,12 @@
 				class="add-edite-content"
 				on:click={() => {
 					showEmptyFieldWarningMessage = false;
-					showAddEditItem = true;
+					showMenu = true;
 					goalCount = 0;
 					newItemName = '';
 					newItemLifeTime = 'Lifetime';
 					selectedColor = 'Gray';
-					func = "Edit"
+					func = 'Edit';
 				}}
 			>
 				<span class="material-symbols-outlined"> edit </span>
@@ -247,13 +260,15 @@
 		</div>
 	{/if}
 	<Menu
-		bind:showAddEditItem
+		bind:showMenu
 		bind:showEmptyFieldWarningMessage
 		bind:goalCount
 		bind:newItemName
 		bind:newItemLifeTime
 		bind:selectedColor
 		bind:func
+		on:delete={deleteItem}
+		on:reset={resetItem}
 		on:close={closeAddNewItemWindow}
 		on:save={addNewItem}
 		on:increaseGoal={increaseGoal}

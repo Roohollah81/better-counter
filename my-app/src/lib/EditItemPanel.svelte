@@ -8,7 +8,7 @@
 	let showSidebar = false;
 	let showTimeLine = false;
 	let showBarchart = false;
-	let showAddEditItem = false;
+	let showMenu = false;
 	let goalCount = 0;
 	let newItemName = '';
 	let newItemLifeTime = 'Lifetime';
@@ -102,7 +102,7 @@
 		if (!newItemName) {
 			showEmptyFieldWarningMessage = true;
 		} else {
-			showAddEditItem = false;
+			showMenu = false;
 			let new_item = {
 				title: newItemName,
 				color: selectedColor,
@@ -113,7 +113,7 @@
 	}
 
 	function closeAddNewItemWindow() {
-		showAddEditItem = false;
+		showMenu = false;
 	}
 
 	function increaseGoal() {

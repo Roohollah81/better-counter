@@ -4,7 +4,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
 
-	export let showAddEditItem: boolean;
+	export let showMenu: boolean;
 	export let showEmptyFieldWarningMessage: boolean;
 	export let goalCount: number;
 	export let newItemName: string;
@@ -40,7 +40,7 @@
 	}
 </script>
 
-{#if showAddEditItem}
+{#if showMenu}
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div class="menu" transition:fly={{ y: 200, duration: 200 }}>
