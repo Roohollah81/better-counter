@@ -25,11 +25,11 @@ change in panel of change details that exists in full screen sidebar panel
 
 - [ ] update item detail
 
-- [ ] delete item
-
 - [ ] reset item counter
 
 # done
+
+- [x] delete item
 
 - [x] fix barchart attribute (per day, per hour, per week, per month)
 
