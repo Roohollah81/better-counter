@@ -148,6 +148,11 @@
 
 			// Trigger reactivity
 			items = items;
+			
+			// Close the sidebar
+			showSidebar = false;
+			showMenu = false;
+
 		}
 	}
 
@@ -267,6 +272,7 @@
 		bind:newItemLifeTime
 		bind:selectedColor
 		bind:func
+		on:update={updateItem}
 		on:delete={deleteItem}
 		on:reset={resetItem}
 		on:close={closeAddNewItemWindow}

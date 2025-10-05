@@ -75,12 +75,20 @@
 			{/each}
 		</div>
 		<div class="save-cancel-section">
-			{#if func == "Edit"}
-				<div class="save-cancel-button" style="color: red;" on:click={() => dispatch('delete')}>Delete</div>
-				<div class="save-cancel-button" style="color: red;" on:click={() => dispatch('reset')}>Reset</div>
+			{#if func == 'Edit'}
+				<div class="save-cancel-button" style="color: red;" on:click={() => dispatch('delete')}>
+					Delete
+				</div>
+				<div class="save-cancel-button" style="color: red;" on:click={() => dispatch('reset')}>
+					Reset
+				</div>
 			{/if}
 			<div class="save-cancel-button" on:click={() => dispatch('close')}>Cancel</div>
-			<div class="save-cancel-button" on:click={() => dispatch('save')}>Save</div>
+			{#if func == 'Edit'}
+				<div class="save-cancel-button" on:click={() => dispatch('update')}>Save</div>
+			{:else}
+				<div class="save-cancel-button" on:click={() => dispatch('save')}>Save</div>
+			{/if}
 		</div>
 	</div>
 {/if}
